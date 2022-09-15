@@ -1,6 +1,6 @@
 
     async function doRequest() {
-        let url = 'http://10.0.0.100/events';
+        let url = 'http://10.0.0.127';
         let res = await fetch(url);
 
         if (res.ok) {
@@ -15,6 +15,7 @@
 
     doRequest().then(data => {
         console.log(data);
+        document.getElementById("test_url").innerHTML += data;
     });
 
 

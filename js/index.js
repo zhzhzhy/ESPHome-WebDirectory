@@ -3,17 +3,15 @@ import EventSource from 'eventsource';
 //const EventSource = require('eventsource');
 
     async function doRequest() {
-        let url = 'http://10.0.0.127';
+        let url = 'http://10.0.0.127/events';
+        //let res = await fetch(url);
         let res = await fetch(url);
-
-        if (res.ok) {
-
-            let text = await res.text();
-            console.log(text);
+        console.log(res);
+        let text = `${res.statusText} ${res.status}`;
+            //let text = res.text();
+            //console.log(text);
             return text;
-        } else {
-            return `HTTP error: ${res.status}`;
-        }
+       
     }
 
 //function htmlToText(html) {
@@ -23,6 +21,7 @@ import EventSource from 'eventsource';
 //}
 
     doRequest().then(data => {
+        //let a = data.toString();
         console.log(data);
     });
 

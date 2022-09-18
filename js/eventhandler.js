@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import EventSource from 'eventsource';
 
 //    async function doRequest() {
@@ -39,6 +38,9 @@ evtSource.addEventListener('ping', function(e) {
 
 evtSource.addEventListener('state', function(e) {
     console.log("state", e.data);
+    //let a = JSON.stringify(e.data);
+    let a = JSON.parse(e.data);
+    console.log(a.id);
   }, false);
   evtSource.addEventListener('log', function(e) {
     console.log("log", e.data);

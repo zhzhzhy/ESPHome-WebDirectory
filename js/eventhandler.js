@@ -1,28 +1,10 @@
 import EventSource from 'eventsource';
 
-// async function: Abandoned
-//    async function doRequest() {
-//        let url = 'http://10.0.0.127/events';
-//        //let res = await fetch(url);
-//        let res = await fetch(url);
-//        console.log(res);
-//        let text = `${res.statusText} ${res.status}`;
-//            //let text = res.text();
-//            //console.log(text);
-//            return text;
-//       
-//    }
-
-
-   // doRequest().then(data => {
-   //     //let a = data.toString();
-   //     console.log(data);
-   // });
-
-// Eventhandler for ESPHome Eventsource API
-// Example:: 
-// EvenHandler("10.0.0.190","state");
-
+/* 
+Eventhandler for ESPHome Eventsource API
+ Example:: 
+ EvenHandler("10.0.0.190","state");
+*/
 
 export default function EvenHandler(addr,types) {
     

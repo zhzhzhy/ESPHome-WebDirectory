@@ -1,5 +1,6 @@
 import http from 'http'
-import fs, { read } from 'fs'
+import  fs, { read } from 'fs'
+import { promises as fas } from 'fs'
 
 const server = http.createServer( (req,res) =>{
     console.log("Web server hello!");
@@ -15,11 +16,12 @@ const server = http.createServer( (req,res) =>{
 
 }).listen(8080)
 
-function read_file(path){
-    fs.readFile(path,'utf-8',(err,data) => {
+async function read_file(path){
+    const result = await fs.readFile(path,'utf-8',(err,data) => {
         if(err){throw err;return}
-        console.log(data);
+        //console.log(data);
+        console.log(result);
         //res.write('Hello  World!');
-        return data;
+        return result;
     })
 }

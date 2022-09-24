@@ -9,20 +9,35 @@
    <!-- <link rel="stylesheet" href="./style.css"> -->
   <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
   </head>
-  <body>
+  <body onload="onload();">
+    <script type="text/javascript">
+      let Input_IP;
+      async function onload(){
+          return Input_IP = await document.getElementById('IP_address');
+      }
+      function Handle_Input_IP() {
+          console.log(onload().then((result) => {console.log(result.value)}));
+        /*  if(Input_IP?.value){
+            alert(Input_IP.value);
+          } else {
+            alert("OBJ not init!");
+          }
+          */
+      }
+    </script>
     <main>
-        <h1>
-	<a href="http://10.0.0.127/events">esphome web</a>
-	</h1>  
-        <div class="test">
-          <div id="test_url">test_url</div>
+      <h2>
+        <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
+      </h2> 
+      <label for="IP_address">Enter IP address for ESPHome component:</label>
+    <div class="input_box">
+    <input type="text" id="IP_address" name="IP"  size="10">
+    <input type="button" value="click" onclick="Handle_Input_IP();">
+    </div>
 
-        </div>
 
-        <div>
-          <ul></ul>
-        </div>
     </main>
-	<script src="js/index.js"></script>
+
+	<!-- script src="asset/script.js"></script-->
   </body>
 </html>

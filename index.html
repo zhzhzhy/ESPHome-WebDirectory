@@ -9,21 +9,18 @@
    <!-- <link rel="stylesheet" href="./style.css"> -->
   <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
   </head>
-  <body onload="onload();">
+  <body>
     <script type="text/javascript">
-      let Input_IP;
-      async function onload(){
-          return Input_IP = await document.getElementById('IP_address');
-      }
-      function Handle_Input_IP() {
-          console.log(onload().then((result) => {console.log(result.value)}));
-        /*  if(Input_IP?.value){
-            alert(Input_IP.value);
-          } else {
+      
+      function Handle_Input_IP(){
+          let Input_IP;
+          Input_IP =  document.getElementById('IP_address');
+          if(!Input_IP?.value){
             alert("OBJ not init!");
-          }
-          */
+          } 
+          console.log(Input_IP.value);
       }
+
     </script>
     <main>
       <h2>
@@ -32,7 +29,7 @@
       <label for="IP_address">Enter IP address for ESPHome component:</label>
     <div class="input_box">
     <input type="text" id="IP_address" name="IP"  size="10">
-    <input type="button" value="click" onclick="Handle_Input_IP();">
+    <input type="button" value="Commit" onclick="Handle_Input_IP();">
     </div>
 
 

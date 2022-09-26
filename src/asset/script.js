@@ -1,6 +1,4 @@
-<script type="text/javascript">
-      
-function Handle_Input_IP(){
+function Handle_Input_IP() {
     let Input_IP;
     Input_IP =  document.getElementById('IP_address');
     if(!Input_IP?.value){
@@ -8,5 +6,3 @@ function Handle_Input_IP(){
     } 
     console.log(Input_IP.value);
 }
-
-</script>

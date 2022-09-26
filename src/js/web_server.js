@@ -12,15 +12,12 @@ const server = http.createServer( (req,res) =>{
     let url = req.url;
     console.log("url: ",url);
     req.query = new URLSearchParams(url.split('?')[1]);
-    const route = handle_route(url);
+    const route_file = handle_route(url);
     const request_json = JSON.stringify(Object.fromEntries(req.query.entries()));
     //const entries = util.inspect(req.query.entries);
-    console.log("request_json:",request_json);
-    //if (url === "/") {
-    //    url = "/index.html"
-    //}
-    console.log('route:',route);
-    read_file(route).then(result => {res.write(result);res.end();}).catch(() => {console.log("No such file!");res.end();});
+    //console.log("request_json:",request_json);
+    //console.log('route:',route);
+    read_file(route_file).then(result => {res.write(result);res.end();}).catch(() => {console.log("No such file:",route_file);res.end();});
 }).listen(8080)
 
 function read_file(path){

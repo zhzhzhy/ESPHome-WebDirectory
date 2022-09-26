@@ -10,18 +10,6 @@
   <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
   </head>
   <body>
-    <script type="text/javascript">
-      
-      function Handle_Input_IP(){
-          let Input_IP;
-          Input_IP =  document.getElementById('IP_address');
-          if(!Input_IP?.value){
-            alert("Empty IP address!");
-          } 
-          console.log(Input_IP.value);
-      }
-
-    </script>
     <main>
       <h2>
         <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
@@ -32,9 +20,8 @@
     <input type="button" value="Commit" onclick="Handle_Input_IP();">
     </div>
 
-
     </main>
 
-	<!-- script src="asset/script.js"></script-->
+	<script type="text/javascript" src="src/asset/script.js"></script>
   </body>
 </html>

@@ -26,7 +26,7 @@ const server = http.createServer( (req,res) =>{
 
 function read_file(path){
     return new Promise((resolve,reject) => {fs.readFile(path,'utf-8',(err,data) => {
-        if(err){reject(new Error("fail to read file!\n"));return}
+        if(err){reject(new Error("fail to read file!\n"))}
         resolve(data);
     })})
 }

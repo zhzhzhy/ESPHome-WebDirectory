@@ -16,13 +16,17 @@ const server = http.createServer( (req,res) =>{
     const request_json = JSON.stringify(Object.fromEntries(req.query.entries()));
     //const entries = util.inspect(req.query.entries);
     //console.log("request_json:",request_json);
-    //console.log('route:',route);
-    read_file(route_file).then(result => {res.write(result);res.end();}).catch(() => {console.log("No such file:",route_file);res.end();});
+    // console.log('route_file:',route_file);
+    if(!route_file){
+        res.end('file not found!');
+    }else{
+    read_file(route_file).then(result => {res.write(result);res.end();}).catch((error) => {console.error(error,"file:",route_file);res.end('fail to read file!');});
+    }
 }).listen(8080)
 
 function read_file(path){
     return new Promise((resolve,reject) => {fs.readFile(path,'utf-8',(err,data) => {
-        if(err){reject();return}
+        if(err){reject(new Error("fail to read file!\n"));return}
         resolve(data);
     })})
 }

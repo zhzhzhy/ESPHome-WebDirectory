@@ -9,7 +9,7 @@ export default function handle_route(url){
 
     //default route to root
     if (url === "/") {
-        url = "/index.html"
+        url = "/index.html";
     }
 
     const list = url.split('/');

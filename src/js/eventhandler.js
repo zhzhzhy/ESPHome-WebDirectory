@@ -31,7 +31,7 @@ evtSource.addEventListener('state', function(e) {
     console.log("state", e.data);
     //let a = JSON.stringify(e.data);
     let a = JSON.parse(e.data);
-    console.log(a.id);
+    //console.log(a.id);
   }, false);
 }
 

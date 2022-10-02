@@ -32,7 +32,11 @@
 
 	<script type="text/javascript" src="src/asset/script.js"></script>
   <script>
-    Handle_Input_IP(((data) => {Add_Component(data);}));
+    $(document).ready(() =>{
+    Handle_Input_IP((data) => {Add_Component(data);});
+    Remove_Component();
+    })
+
   </script>
   </body>
 </html>

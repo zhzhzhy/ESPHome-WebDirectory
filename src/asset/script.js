@@ -17,7 +17,7 @@ function Handle_Input_IP(callback) {
   $("#IP_address").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
       handle_event();
-      
+
     }
 });
   
@@ -25,7 +25,7 @@ function Handle_Input_IP(callback) {
 
 function Add_Component(data){
 
-      $("ul.component").append("<li class='component'>" + data + "</li>");
+      $("ul.component").append(`<li class='component' id='${data}'>${data}</li>`);
 
 }
 

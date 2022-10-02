@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "eventsource": "^2.0.2",
+    "jquery": "^3.6.1",
     "querystring": "^0.2.1"
   }
 }

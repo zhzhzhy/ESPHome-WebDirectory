@@ -13,14 +13,14 @@ const evtSource = new EventSource('http://' + addr + '/events');
 evtSource.addEventListener('open', function(e) {
     console.log("Events Connected");
     //callback function to do anything else
-    callback(e.data);
+    callback(e);
   }, false);
 
 evtSource.addEventListener('error', function(e) {
     if (e.target.readyState != EventSource.OPEN) {
       console.log("Events Disconnected");
       //callback function to do anything else
-      callback(e.data);
+      callback(e);
     }
   }, false);
 
@@ -28,7 +28,7 @@ if (types === 'ping') {
 evtSource.addEventListener('ping', function(e) {
     //console.log("ping", e.data);
     //callback function to do anything else
-    callback(e.data);
+    callback(e);
   }, false);
 }
 

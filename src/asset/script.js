@@ -1,6 +1,6 @@
 function Handle_Input_IP(callback) {
     let Input_IP;
-      $("#Input_IP").click(function(){
+    $("#Input_IP").click(function(){
     Input_IP =  document.getElementById('IP_address');
     if(!Input_IP?.value){
       alert("Empty IP address!");
@@ -19,5 +19,7 @@ function Add_Component(data){
 }
 
 function Remove_Component(){
-$("ul.component").on('dblclick',"li",function() {console.log("Remove component: ",$(this).text());$(this).remove();})
+  
+      $("ul.component").on('dblclick',"li",function() {console.log("Remove component: ",$(this).text());$(this).remove();})
+
 }

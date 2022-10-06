@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "bootstrap-icons": "^1.9.1",
     "eventsource": "^2.0.2",
     "jquery": "^3.6.1",
     "querystring": "^0.2.1"

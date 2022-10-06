@@ -55,11 +55,28 @@
   </section>
 
   <section>
-    <div class="container col g-5">
+    <div class="container col " id="device_list">
+      <div class="card mt-3 p-3 rounded-5 component" id="template_card" style="width: fit-content;">
+            
+        <div class="card-body justify-content-start">
+          <div class="d-flex">
+            <img src="src/img/robot.svg" class="m-1 mb-3" alt="...">
+            <h5 class="card-title">Device IP</h5>
+          </div>
+          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis, optio.</p>
+        <div class="d-flex justify-content-start">
+          <button  class="btn btn-primary m-2">logs</a>
+          <button  class="btn btn-primary m-2">remove</a>
+          </div>
+        </div>
+      </div>
       <div class="components_list list-group col-3 mt-3">
+        <h2>
+        <ul class="component row">
+          
 
-        <ul class="component row"></ul>
-
+        </ul>
+      </h2>
     </div>
   <div class="components_log col">
     <div>
@@ -78,7 +95,7 @@
 	<script type="text/javascript" src="src/asset/script.js"></script>
   <script>
     $(document).ready(() =>{
-    Handle_Input_IP((data) => {Add_Component(data);});
+    Handle_Input_IP((data) => {Add_Component(data,$("#template_card").clone());});
     Remove_Component();
     })
 

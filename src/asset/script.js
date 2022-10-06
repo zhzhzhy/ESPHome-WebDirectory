@@ -24,9 +24,14 @@ function Handle_Input_IP(callback) {
 }
 
 function Add_Component(data){
-
-      $("ul.component").append(`<li class='component' id='${data}'>${data}</li>`);
-
+      const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+      if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
+      const Data_Append = $("<li/>").attr("id",data).addClass("component").html(`${data}`);
+      //console.log(data_append);
+      $("ul.component").append(Data_Append);
+      }else{
+          alert(`IP address invalid: ${data}`);
+      }
 }
 
 function Remove_Component(){

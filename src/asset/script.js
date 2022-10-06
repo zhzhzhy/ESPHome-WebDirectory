@@ -26,7 +26,7 @@ function Handle_Input_IP(callback) {
 function Add_Component(data){
       const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
       if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
-      const Data_Append = $("<li/>").attr("id",data).addClass("component").html(`${data}`);
+      const Data_Append = $("<li/>").attr("id",data).addClass("component list-group-item row").html(`${data}`);
       //console.log(data_append);
       $("ul.component").append(Data_Append);
       }else{

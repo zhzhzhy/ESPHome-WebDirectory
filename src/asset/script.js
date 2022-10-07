@@ -1,3 +1,4 @@
+//Bootstrap alert syntax
 const alert_BS = (message, type,alertPlaceholder) => {
   const wrapper = document.createElement('div')
   wrapper.innerHTML = [
@@ -13,8 +14,7 @@ const alert_BS = (message, type,alertPlaceholder) => {
 });
 }
 
-
-
+// append template HTML in the text/template section of <script> tag
 function Append_Template(selector,items) {
   var itemTpl = $('script[data-template="template_card"]').text().split(/\$\{(.+?)\}/g);
   function render(props) {
@@ -28,7 +28,7 @@ function Append_Template(selector,items) {
   selector.prepend(aped);
 }
 
-
+// handle IP input to Add_Component_Card
 function Handle_Input_IP(callback) {
     let Input_IP;
     function handle_event(){
@@ -68,6 +68,11 @@ function Add_Component(data,Jquery_Object){
       }
 }
 
+/*
+Add Component_Card :
+data as IP(text in the input box)
+selector as where to prepend()
+*/
 function Add_Component_Card(data,selector){
   const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
   if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
@@ -85,12 +90,9 @@ function Add_Component_Card(data,selector){
   }
 }
 
-function Remove_Component(selector){
-  selector.on('click')
+//Remove card
+function Remove_Component(){
+  $("div.component").on('click',"button.remove",function() {console.log("Remove component: ",$(this).parents("div.component"));$(this).parents("div.component").remove();})
 }
 
-//function Remove_Component(){
-//  
-//      $("ul.component").on('dblclick',"div.component",function() {console.log("Remove component: ",$(this).text());$(this).remove();})
-//
-//}
+

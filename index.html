@@ -29,13 +29,13 @@
               <ul class="navbar-nav ms-auto">
                   <!--margin start = margin left-->
                   <li class="nav-item">
-                      <div class="nav-link">Lorem ipsum dolor sit amet.</div>
+                      <div class="nav-link">manage devices</div>
                   </li>
                   <li class="nav-item">
-                      <div class="nav-link">Lorem ipsum dolor sit.</div>
+                      <div class="nav-link">event log</div>
                   </li>
                   <li class="nav-item">
-                      <div class="nav-link">Lorem ipsum dolor sit amet.</div>
+                      <div class="nav-link">device_list</div>
                   </li>
               </ul>
           </div>
@@ -59,25 +59,7 @@
   <section>
     <div class="container col" >
       <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list">
-      <div class="card mt-3 p-3 rounded-5 component m-3" id="template_card" style="width: fit-content;">
-            
-        <div class="card-body justify-content-start">
-          <div class="d-flex gap-1">
-            <img src="src/img/robot.svg" class="" alt="...">
-            <h5 class="card-title mt-2" >Device IP</h5>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_component" role="button" aria-expanded="false" aria-controls="collapse_component">collapse</button>
-          </div>
-          <div class="collapse" id="collapse_component" aria-labelledby="collapse_component">
-          <div class="d-flex flex-column">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-              <div class="d-flex justify-content-start">
-                <button  class="btn btn-primary m-2">logs</a>
-                <button  class="btn btn-primary m-2">remove</a>
-              </div>
-          </div>
-        </div>
-        </div>
-      </div>
+     
     </div>
       <div class="components_list list-group col-3 mt-3">
         <h2>
@@ -101,14 +83,36 @@
   </section>
 
 
+
 	<script type="text/javascript" src="src/asset/script.js"></script>
   <script>
     $(document).ready(() =>{
-    Handle_Input_IP((data) => {Add_Component(data,$("#template_card").clone());});
-    Remove_Component();
+    //Handle_Input_IP((data) => {Add_Component(data,$("#template_card").clone());});
+    Handle_Input_IP((data) => {Add_Component_Card(data,$("#device_list"))});
+    //Remove_Component();
     })
 
   </script>
   <script src="src/asset/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+  <script type="text/template" data-template="template_card">
+    <div class="card mt-3 p-3 rounded-5 component m-3" id="${id}" style="width: fit-content;">
+      <div class="card-body justify-content-start">
+        <div class="d-flex gap-1">
+          <img src="src/img/robot.svg" class="" alt="...">
+          <h5 class="card-title mt-2" >${ip_addr}</h5>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${ip_addr_sel}" role="button" aria-expanded="false" aria-controls="${ip_addr}">collapse</button>
+        </div>
+        <div class="collapse" id="${ip_addr_sel}" >
+        <div class="d-flex flex-column">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <div class="d-flex justify-content-start">
+              <button  class="btn btn-primary m-2">logs</a>
+              <button  class="btn btn-primary m-2">remove</a>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div> 
+  </script>
   </body>
 </html>

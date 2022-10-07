@@ -52,8 +52,8 @@ function Add_Component(data,Jquery_Object){
       // console.log(Data_Append);
       $("#device_list").prepend(Data_Append);
       const id = data.replace(/\./g,"\\.");
-      const selector = '#' + id + ' ' + 'h5.card-title';
-      $(selector).html(`${data}`);
+      const selector_h5 = '#' + id + ' ' + 'h5.card-title';
+      $(selector_h5).html(`${data}`);
       }else{
         alert_BS(`IP address invalid: ${data}`,"danger",$("#IP_input_box"));
       }

@@ -7,7 +7,11 @@ const alert_BS = (message, type,alertPlaceholder) => {
     '</div>'
   ].join('')
 
-  alertPlaceholder.after(wrapper)
+  alertPlaceholder.after(wrapper);
+  $(".alert").delay(4000).slideUp(200,function() {
+    $(this).alert('close');
+});
+
 }
 
 function Handle_Input_IP(callback) {

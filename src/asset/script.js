@@ -1,9 +1,23 @@
+const alert_BS = (message, type,alertPlaceholder) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.after(wrapper)
+}
+
 function Handle_Input_IP(callback) {
     let Input_IP;
     function handle_event(){
       Input_IP =  document.getElementById('IP_address');
     if(!Input_IP?.value){
-      alert("Empty IP address!");
+      //alert("Empty IP address!");
+      // const IP_Error_Alert =  $("<div/>").addClass("alert alert-danger").attr("role","alert").html("Empty IP address!");
+      alert_BS("Empty IP address!","danger",$("#IP_input_box"));
     }else{ 
     console.log(Input_IP.value);
     callback(Input_IP?.value);
@@ -23,6 +37,8 @@ function Handle_Input_IP(callback) {
   
 }
 
+
+
 function Add_Component(data,Jquery_Object){
       const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
       if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
@@ -35,7 +51,7 @@ function Add_Component(data,Jquery_Object){
       const selector = '#' + id + ' ' + 'h5.card-title';
       $(selector).html(`${data}`);
       }else{
-          alert(`IP address invalid: ${data}`);
+        alert_BS(`IP address invalid: ${data}`,"danger",$("#IP_input_box"));
       }
 }
 

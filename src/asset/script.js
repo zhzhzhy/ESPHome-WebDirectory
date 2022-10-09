@@ -41,7 +41,7 @@ function Handle_Input_IP(callback) {
     }
     }
 
-    $("#Input_IP").click(function(){
+    $("#basic-Commit-IP").click(function(){
       handle_event();
   });
 

@@ -48,9 +48,12 @@
       </h2> 
       <label for="IP_address">Enter IP address for ESPHome component:</label>
     <div class="input_box d-flex flex-column justify-content-start" style="width: fit-content;">
+
     <div class="d-flex gap-3 mb-3" id="IP_input_box">
-      <input type="text" id="IP_address" name="IP"  size="10">
-      <input type="button" id="Input_IP" class="Input_IP" value="Commit" >
+      <div class="input-group mt-3">
+        <input type="text" class="form-control" id="IP_address" placeholder="ESPHome component IP address" aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
+        <button class="btn btn-outline-secondary btn-primary" type="button" id="basic-Commit-IP">Commit</span>
+      </div>
     </div>
     </div>
     

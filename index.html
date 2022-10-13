@@ -62,22 +62,47 @@
 
   <section>
     <div class="container">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active bg-primary" aria-current="page" href="#">Devices Card</a>
+      <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation" tabindex="0">
+          <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Devices_Card" type="button" role="tab" aria-controls="Devices_Card" aria-selected="true">Devices Card</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">Devices list</a>
+        <li class="nav-item" role="presentation" tabindex="0">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Devices_List" type="button" role="tab" aria-controls="Devices_List" aria-selected="false">Devices list</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logcat</a>
+        <li class="nav-item" role="presentation" tabindex="0">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Logcat" type="button" role="tab" aria-controls="Logcat" aria-selected="false">Logcat</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link">Settings</a>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-toggle="tab">Settings</a>
         </li>
       </ul>
-    </div>
+    
 
+    <div class="tab-content">
+
+      <div id="Devices_Card" class="tab-pane fade show active" role="tabpanel" aria-labelledby="Devices_Card" tabindex="-1">
+        <div class="container col" >
+          <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list"></div>
+          <div class="components_list list-group col-3 mt-3">
+            <h2>
+            <ul class="component row"></ul>
+            </h2>
+          </div>
+    
+    
+      </div>
+  
+      </div>
+        
+      <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
+          Text2
+      </div>
+  
+      <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
+          Text3
+      </div>
+    </div>
+  </div>
   </section>
 
 

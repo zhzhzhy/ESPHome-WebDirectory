@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/src/asset', express.static(path.join(__dirname, 'src/asset')))
 app.use('/src/img', express.static(path.join(__dirname, 'src/img')))
-app.use('/socket.io', express.static(path.join(__dirname, 'socket.io')))
+//app.use('/socket.io', express.static(path.join(__dirname, 'socket.io')))
 
 io.on('connection', (socket) => {
     console.log('a user connected');

@@ -13,7 +13,10 @@ const evtSource = new EventSource('http://' + addr + '/events');
 evtSource.addEventListener('open', function(e) {
     console.log("Events Connected");
     //callback function to do anything else
-    callback(e);
+    //callback(e);
+    /*
+    may cause Event { type: 'open' } not recoginized by JSON
+    */
   }, false);
 
 evtSource.addEventListener('error', function(e) {

@@ -6,6 +6,7 @@ import { rejects } from 'assert';
 import { Server } from "socket.io";
 import express from 'express';
 import path from 'path';
+import EventHandler from './eventhandler.js'
 
 
 const app = express();
@@ -28,6 +29,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
       });
+    EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
   });
 
 server.listen(port,() => {

@@ -165,6 +165,9 @@
   <script src="src/asset/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
+    socket.on("state", (arg) => {
+      console.log(arg); 
+      });
   </script>
 
   </body>

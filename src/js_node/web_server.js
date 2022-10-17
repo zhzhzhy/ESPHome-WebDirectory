@@ -18,7 +18,7 @@ const __dirname = path.resolve();
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  EventHandler("10.0.0.190","state",(a) => {console.log(a);socket.emit("state", a);});
+  EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
   socket.on('disconnect', () => {
       console.log('user disconnected');
     });

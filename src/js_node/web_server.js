@@ -22,6 +22,8 @@ app.get('/', (req, res) => {
 
 app.use('/src/asset', express.static(path.join(__dirname, 'src/asset')))
 app.use('/src/img', express.static(path.join(__dirname, 'src/img')))
+app.use('/src/css', express.static(path.join(__dirname, 'src/css')))
+app.use('/src/js_frontend', express.static(path.join(__dirname, 'src/js_frontend')))
 //app.use('/socket.io', express.static(path.join(__dirname, 'socket.io')))
 
 io.on('connection', (socket) => {

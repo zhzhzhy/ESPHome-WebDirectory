@@ -8,7 +8,7 @@
     <title>ESPHome-WebDirectory</title>
     <link href="src/asset/bootstrap-5.2.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="src/asset/jquery-3.6.1.js"></script>
-    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
    <!-- <link rel="stylesheet" href="./style.css"> -->
   <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
   </head>
@@ -165,8 +165,10 @@
   <script src="src/asset/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
-    socket.on("state", (arg) => {
-      console.log(arg); 
+    socket.on("state", async (arg) => {
+      //console.log(typeof(arg))
+      const state = await JSON.parse(arg);
+      console.log(state); 
       });
   </script>
 

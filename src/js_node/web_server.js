@@ -8,6 +8,7 @@ import express from 'express';
 import path from 'path';
 import EventHandler from './eventhandler.js'
 
+(() => {
 
 const app = express();
 const server = http.createServer(app);
@@ -15,9 +16,10 @@ const io = new Server(server);
 const port = 5000
 const __dirname = path.resolve();
 
+let Addr_Group = new Set();
 
 io.on('connection', (socket) => {
-  socket.on("Sync_Addr_Group",(msg) => {console.log(msg)}
+  socket.on("Sync_Addr_Group",(msg) => {console.log(msg)})
   console.log('a user connected');
   EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
   socket.on('disconnect', () => {
@@ -41,3 +43,5 @@ server.listen(port,() => {
     console.log(`listening on port ${port}`)
 })
 
+
+})()

@@ -94,25 +94,30 @@ function Add_Component_Card(data,selector){
 
 //Remove card
 function Remove_Component(){
-  $("div.component").on('click',"button.remove",function() {console.log("Remove component: ",$(this).parents("div.component"));$(this).parents("div.component").remove();})
+  $("div.component").on('click',"button.remove",function() {
+    console.log("Remove component: ",$(this).parents("div.component"));$(this).parents("div.component").remove();
+  })
 }
 
 // Maintain a group of added components IP address
 function Maintain_Addr_Group(params,Operation,callback) {
-  if (Operation === "add") {
-    if (!Addr_Group.has(params)) {
-      Addr_Group.add(params);
-      console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(","));
-      callback();
-    }else{
-      alert_BS(`Duplicated IP address: ${params}`,"danger",$("#IP_input_box"));
+  try {
+    if (Operation === "add") {
+      if (!Addr_Group.has(params)) {
+        Addr_Group.add(params);
+        console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(","));
+        callback();
+      }else{
+        alert_BS(`Duplicated IP address: ${params}`,"danger",$("#IP_input_box"));
+      }
     }
+    if (Operation === "delete" | Operation === "remove") {
+      console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(",")) 
+      //Remove CODES HERE TODO
+    }
+  } catch (error) {
+    console.log(error)
   }
-  if (Operation === "delete" | Operation === "remove") {
-    
-    console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(",")) 
-  }
-  
 
 }
 

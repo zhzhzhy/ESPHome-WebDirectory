@@ -130,13 +130,14 @@
 	<script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script>
     $(document).ready(() =>{
-    //Handle_Input_IP((data) => {Add_Component(data,$("#template_card").clone());});
     Handle_Input_IP(
       (data) => {
       Maintain_Addr_Group(data,"add",() => {
-        Add_Component_Card(data,$("#device_list"))}
-        )});
-    //Remove_Component();
+        Add_Component_Card(data,$("#device_list"));
+        socket.emit("Sync_Addr_Group",[...Addr_Group.values()]); 
+            }
+        )}
+      );
     })
 
 
@@ -167,6 +168,7 @@
   <script src="src/asset/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
+    socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
     socket.on("state", async (arg) => {
       const state = await JSON.parse(arg);
       //console.log(state); 

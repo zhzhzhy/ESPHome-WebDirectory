@@ -17,12 +17,14 @@ const __dirname = path.resolve();
 
 
 io.on('connection', (socket) => {
+  socket.on("Sync_Addr_Group",(msg) => {console.log(msg})
   console.log('a user connected');
   EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
   socket.on('disconnect', () => {
       console.log('user disconnected');
     });
 });
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')

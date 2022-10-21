@@ -114,8 +114,6 @@
       <div class="components_list list-group col-3 mt-3">
         <h2>
         <ul class="component row">
-          
-
         </ul>
       </h2>
     </div>
@@ -133,7 +131,11 @@
   <script>
     $(document).ready(() =>{
     //Handle_Input_IP((data) => {Add_Component(data,$("#template_card").clone());});
-    Handle_Input_IP((data) => {Add_Component_Card(data,$("#device_list"))});
+    Handle_Input_IP(
+      (data) => {
+      Maintain_Addr_Group(data,"add",() => {
+        Add_Component_Card(data,$("#device_list"))}
+        )});
     //Remove_Component();
     })
 
@@ -166,9 +168,8 @@
   <script>
     let socket = io();
     socket.on("state", async (arg) => {
-      //console.log(typeof(arg))
       const state = await JSON.parse(arg);
-      console.log(state); 
+      //console.log(state); 
       });
   </script>
 

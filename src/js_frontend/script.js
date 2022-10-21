@@ -1,3 +1,5 @@
+let Addr_Group = new Set();
+
 //Bootstrap alert syntax
 const alert_BS = (message, type,alertPlaceholder) => {
   const wrapper = document.createElement('div')
@@ -36,7 +38,7 @@ function Handle_Input_IP(callback) {
     if(!Input_IP?.value){
       alert_BS("Empty IP address!","danger",$("#IP_input_box"));
     }else{ 
-    console.log(Input_IP.value);
+    console.log("IP addr & component added: ",Input_IP.value);
     callback(Input_IP?.value);
     }
     }
@@ -95,4 +97,22 @@ function Remove_Component(){
   $("div.component").on('click',"button.remove",function() {console.log("Remove component: ",$(this).parents("div.component"));$(this).parents("div.component").remove();})
 }
 
+// Maintain a group of added components IP address
+function Maintain_Addr_Group(params,Operation,callback) {
+  if (Operation === "add") {
+    if (!Addr_Group.has(params)) {
+      Addr_Group.add(params);
+      console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(","));
+      callback();
+    }else{
+      alert_BS(`Duplicated IP address: ${params}`,"danger",$("#IP_input_box"));
+    }
+  }
+  if (Operation === "delete" | Operation === "remove") {
+    
+    console.log("New components group set: ",[...Addr_Group].map(data => `\[${data}\]`).join(",")) 
+  }
+  
+
+}
 

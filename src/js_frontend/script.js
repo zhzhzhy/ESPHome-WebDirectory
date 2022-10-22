@@ -1,3 +1,5 @@
+(() => {
+
 let Addr_Group = new Set();
 
 //Bootstrap alert syntax
@@ -121,3 +123,5 @@ function Maintain_Addr_Group(params,Operation,callback) {
 
 }
 
+
+})()

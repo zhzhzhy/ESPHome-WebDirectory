@@ -20,7 +20,7 @@ evtSource.addEventListener('open', function(e) {
   }, false);
 
 evtSource.addEventListener('error', function(e) {
-    if (e.target.readyState != EventSource.OPEN) {
+    if (e.target?.readyState != EventSource.OPEN) {
       console.log("Events Disconnected");
       //callback function to do anything else
       callback(e);

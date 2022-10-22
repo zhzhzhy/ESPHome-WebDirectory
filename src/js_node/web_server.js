@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import express from 'express';
 import path from 'path';
 import EventHandler from './eventhandler.js'
+import { Maintain_Addr_Group } from "./app.js";
 
 (() => {
 
@@ -19,9 +20,14 @@ const __dirname = path.resolve();
 let Addr_Group = new Set();
 
 io.on('connection', (socket) => {
-  socket.on("Sync_Addr_Group",(msg) => {console.log(msg)})
+  socket.on("Sync_Addr_Group",(msg) => {
+    Maintain_Addr_Group(msg,'sync',(data) => {
+      for(let i of data) 
+      EventHandler(i,"state",(a) => {socket.emit("state",{ id: i, data: JSON.stringify(a)});});
+    })
+  })
   console.log('a user connected');
-  EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
+  //EventHandler("10.0.0.190","state",(a) => {socket.emit("state", a);});
   socket.on('disconnect', () => {
       console.log('user disconnected');
     });

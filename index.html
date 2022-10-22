@@ -170,8 +170,9 @@
     let socket = io();
     socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
     socket.on("state", async (arg) => {
-      const state = await JSON.parse(arg);
-      //console.log(state); 
+      const state = await JSON.parse(arg.data);
+      const id = arg.id;
+      console.log(`From: ${id}  data: ${state}`); 
       });
   </script>
 

@@ -1,4 +1,3 @@
-
 let Addr_Group = new Set();
 
 //Bootstrap alert syntax

@@ -134,17 +134,18 @@
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
   <script>
     let Addr_Group = new Set();
+    let component_id_group = new Set(); //told why (closer variable)
     const socket = io();
     (() => {
-    let component_id_group = new Set(); //closer variable 
     socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
 
     socket.on("state", async (arg) => {
        
       const state = await JSON.parse(arg.data);
+      console.log(JSON.parse(state));
       const id = arg.id;
       console.log(`From: ${id}  data: ${state}`); 
-      Append_Tree_Template(arg.id,arg.data,() => {});
+      Append_Tree_Template(arg.id,state,() => {});
       //Parse_Server_Event(arg.id,arg.data,(e) => {Operate_Tree_data()});
       });
 

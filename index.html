@@ -129,13 +129,21 @@
 
 
   <script src="src/asset/socket.io/socket.io.min.js"></script>
+  <script>
+    socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
+    socket.on("state", async (arg) => {
+      const state = await JSON.parse(arg.data);
+      const id = arg.id;
+      console.log(`From: ${id}  data: ${state}`); 
+      });
+  </script>
   
 	<script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script src="src/js_frontend/handle_socket_io.js" type="module"></script>
   <script src="src/js_frontend/main.js" type="module"></script>
 
   <script>
-    
+    let Addr_Group = new Set();
     const socket = io();
     $(document).ready(() =>{
     Handle_Input_IP(
@@ -177,7 +185,6 @@
 
 
 
- 
 
 
   </body>

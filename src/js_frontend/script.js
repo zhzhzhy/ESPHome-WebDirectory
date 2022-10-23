@@ -1,4 +1,5 @@
-let Addr_Group = new Set();
+
+
 
 //Bootstrap alert syntax
 const alert_BS = (message, type,alertPlaceholder) => {
@@ -120,4 +121,5 @@ function Maintain_Addr_Group(params,Operation,callback) {
   }
 
 }
+
 

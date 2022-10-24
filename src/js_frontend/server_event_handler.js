@@ -12,10 +12,10 @@ function Append_Tree_Template(id,data,callback){
     //let data_obj = {};
     let data_obj = JSON.parse(data);
     console.log(data_obj.id);
-    let c_id = data_obj.id.split('-');
+    let c_id = data_obj.id;
     let c_value = data_obj.value;
     let c_name = data_obj.name;
-    component_id_group.add(c_id[1]);
+    component_id_group.add(c_id);
     console.log(component_id_group);
     let template_tree = ``;
 

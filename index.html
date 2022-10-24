@@ -139,13 +139,13 @@
     (() => {
     socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
 
-    socket.on("state", async (arg) => {
-       
-      const state = await JSON.parse(arg.data);
-      console.log(JSON.parse(state));
+    socket.on("state", (arg) => {
+      console.log(arg); 
+      const state = JSON.parse(arg.data);
+      //console.log(state);
       const id = arg.id;
       console.log(`From: ${id}  data: ${state}`); 
-      Append_Tree_Template(arg.id,state,() => {});
+      // Append_Tree_Template(arg.id,state,() => {});
       //Parse_Server_Event(arg.id,arg.data,(e) => {Operate_Tree_data()});
       });
 

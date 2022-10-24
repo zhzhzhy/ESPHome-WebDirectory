@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
   socket.on("Sync_Addr_Group",(msg) => {
     Maintain_Addr_Group(msg,'sync',(data) => {
       for(let i of data) 
-      EventHandler(i,"state",(a) => {socket.emit("state",{ id: i, data: JSON.stringify(a)});});
+      EventHandler(i,"state",(a) => {socket.emit("state",{ id: i, data: a});});
     })
   })
   console.log('a user connected');

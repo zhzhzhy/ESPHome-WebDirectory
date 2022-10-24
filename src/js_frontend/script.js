@@ -1,7 +1,13 @@
+/*
+include in index.html 
+handle page event 
+*/
 
 
-
-//Bootstrap alert syntax
+/*
+Bootstrap alert syntax
+Define a new alert using bootstrap alert class
+*/
 const alert_BS = (message, type,alertPlaceholder) => {
   const wrapper = document.createElement('div')
   wrapper.innerHTML = [
@@ -17,7 +23,9 @@ const alert_BS = (message, type,alertPlaceholder) => {
 });
 }
 
-// append template HTML in the text/template section of <script> tag
+/* 
+append template HTML in the text/template section of <script> tag
+*/
 function Append_Template(selector,items) {
   var itemTpl = $('script[data-template="template_card"]').text().split(/\$\{(.+?)\}/g);
   function render(props) {
@@ -93,14 +101,18 @@ function Add_Component_Card(data,selector){
   }
 }
 
-//Remove card
+/*
+Remove card
+*/
 function Remove_Component(){
   $("div.component").on('click',"button.remove",function() {
     console.log("Remove component: ",$(this).parents("div.component"));$(this).parents("div.component").remove();
   })
 }
 
-// Maintain a group of added components IP address
+/* 
+Maintain a group of added components IP address
+*/
 function Maintain_Addr_Group(params,Operation,callback) {
   try {
     if (Operation === "add") {

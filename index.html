@@ -147,7 +147,7 @@
       const id = arg.id;
       console.log(`From: ${id}  data: ${state}`); 
       //Append_Tree_Template(arg.id,arg.data,() => {});
-      Parse_Server_Event(arg.id,arg.data,(e) => {Operate_Tree_data()});
+      Parse_Server_Event(arg.id,arg.data,(id,data_obj) => {Operate_Tree_data(id,data_obj)});
       });
 
     })()

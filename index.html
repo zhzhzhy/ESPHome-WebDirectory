@@ -134,7 +134,8 @@
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
   <script>
     let Addr_Group = new Set();
-    let component_id_group = new Set(); //told why (closer variable)
+    let Component_ID_Map = new Map();
+    let Component_ID_Group = new Set(); //told why (closer variable)
     const socket = io();
     (() => {
     socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
@@ -145,8 +146,8 @@
       //console.log(state);
       const id = arg.id;
       console.log(`From: ${id}  data: ${state}`); 
-      Append_Tree_Template(arg.id,arg.data,() => {});
-      //Parse_Server_Event(arg.id,arg.data,(e) => {Operate_Tree_data()});
+      //Append_Tree_Template(arg.id,arg.data,() => {});
+      Parse_Server_Event(arg.id,arg.data,(e) => {Operate_Tree_data()});
       });
 
     })()

@@ -1,8 +1,15 @@
+class component {
+    constructor(IP,ID_Group,ID_Map) {
+        this.IP = IP;
+        this.ID_Group = ID_Group;
+        this.ID_Map = ID_Map;
+    }
+}
 /*
 Parse socket.io eventsource data to Set & Map for template usage
 Set:Component_ID_Group(Set include data--id) & Map:Component_ID_Map(Map like: data--id => data--object)
 */
-function Parse_Server_Event(id,data,callback) {
+function Parse_Server_Event(IP,data,callback) {
     // Component_ID_Group -> Object.Set is define global scope or in closer
     // Component_ID_Map -> Object.Map is define global scope or in closer
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)

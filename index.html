@@ -134,6 +134,7 @@
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
   <script>
     let Addr_Group = new Set();
+    let Addr_Group_Map = new Map();
     let Component_ID_Map = new Map();
     let Component_ID_Group = new Set(); //told why (closer variable)
     const socket = io();
@@ -144,10 +145,14 @@
       console.log(arg); 
       const state = JSON.parse(arg.data);
       //console.log(state);
-      const id = arg.id;
-      console.log(`From: ${id}  data: ${state}`); 
+      const IP = arg.id;
+      console.log(`From: ${IP}  data: ${state}`); 
       //Append_Tree_Template(arg.id,arg.data,() => {});
-      Parse_Server_Event(arg.id,arg.data,(id,data_obj) => {Operate_Tree_data(id,data_obj)});
+      Parse_Server_Event(arg.id,arg.data,(Component_ID_Group,Component_ID_Map) => {
+        Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
+        console.log(Addr_Group_Map);
+        //Operate_Tree_data(Addr_Group_Map);
+      });
       });
 
     })()

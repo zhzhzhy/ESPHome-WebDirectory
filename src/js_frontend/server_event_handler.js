@@ -19,9 +19,8 @@ function Parse_Server_Event(IP,data,callback) {
     if (!Component_ID_Group.has(c_id)) {
         Component_ID_Group.add(c_id);
     }
-    if (!Component_ID_Map.has(c_id)) {
         Component_ID_Map.set(c_id,data_obj);
-    }
+    
     console.log(data_obj.id);  //comment later!
     console.log(Component_ID_Group); //comment later!
     console.log(Component_ID_Map); //comment later!

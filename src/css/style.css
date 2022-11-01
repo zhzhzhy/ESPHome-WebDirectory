@@ -3,3 +3,30 @@ body::before{
     content: '';
     height: 56px;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+.caret{
+    cursor:pointer;
+    user-select:none;
+  }
+  .caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 5px;
+    transition-duration: 0.3s;
+  }
+  .caret-down::before {
+    transform: rotate(90deg);  
+    transition-duration: 0.3s;
+  }
+  .nested{
+    display:none;
+  }
+  .active{
+    display: block;
+  }

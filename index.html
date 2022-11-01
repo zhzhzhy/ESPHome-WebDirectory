@@ -97,8 +97,15 @@
       </div>
         
       <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
-          Text2
-      </div>
+        <!-- Bootstrap Treeview for component card -->
+        <ul id="treeview">
+        <li><span class="caret">IP</span>
+          <ul class="nested">
+            <li>component1</li>
+            <li>component2</li>
+          </ul>
+        </li>
+        </ul>
   
       <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
           Text3
@@ -176,6 +183,10 @@
 
   </script>
 
+  <script>
+   Tree_Toggle();
+  </script>
+
   <script src="src/asset/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
   <script type="text/template" data-template="template_card">
     <div class="card mt-3 p-3 rounded-5 component m-3" id="${id}" style="width: fit-content;">
@@ -185,12 +196,12 @@
           <h5 class="card-title mt-2" ><a href="http://${ip_addr}">${ip_addr}</a></h5>
           <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${ip_addr_sel}" role="button" aria-expanded="false" aria-controls="${ip_addr}">collapse</button>
         </div>
-        <div class="collapse" id="${ip_addr_sel}" >
+        <div class="collapse" id="${ip_addr_sel}"></div>
         <div class="d-flex flex-column">
             <p class="card-text">Lorem ipsum dolor sit amet.</p>
             <div class="d-flex justify-content-start">
-              <button  class="btn btn-primary m-2">logs</a>
-              <button  class="btn btn-primary m-2 remove" onclick="Remove_Component();" >remove</a>
+              <button  class="btn btn-primary m-2">logs</button>
+              <button  class="btn btn-primary m-2 remove" onclick="Remove_Component();" >remove</button>
             </div>
         </div>
       </div>

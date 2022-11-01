@@ -36,7 +36,7 @@ Append tree template HTML which is maped like data--id => data
 Append to index.html `Devices list` page
 */
 function Append_Tree_Template(id,data,callback){
-   
+    
     //let template_tree = ``; //write HTML template fro bootstrap tree-view
 
 }

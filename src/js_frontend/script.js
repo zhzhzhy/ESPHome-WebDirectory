@@ -158,14 +158,13 @@ function Create_Tree_Element(group_map,callback) {
   for(i of group_map.entries()){
     console.log(i);
     node.textContent = i[0];
-    for(const [key, value] of Object.entries(i[1])){
-      console.log(value);
-        const component_key = value.forEach(element => {
+    console.log(i[1]);
+    const component_group = i[1].Component_ID_Group;
+    const comment_map = i[1].Component_ID_Map;
+    component_group.forEach(element => {
           all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
         });
-        const component_value = value;
-        //all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = component_key;
-      }
+      
     }
 
 }

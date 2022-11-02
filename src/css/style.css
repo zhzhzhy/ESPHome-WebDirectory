@@ -13,20 +13,21 @@ ul {
     cursor:pointer;
     user-select:none;
   }
-  .caret::before {
-    content: "\25B6";
+.caret::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-caret-right-fill' viewBox='0 0 16 16'%3E%3Cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3E%3C/svg%3E");
     color: black;
     display: inline-block;
-    margin-right: 5px;
+    background-repeat: no-repeat;
     transition-duration: 0.3s;
   }
-  .caret-down::before {
+.caret-down::before {
     transform: rotate(90deg);  
     transition-duration: 0.3s;
   }
-  .nested{
+.nested{
     display:none;
   }
-  .active{
+.active{
     display: block;
   }
+

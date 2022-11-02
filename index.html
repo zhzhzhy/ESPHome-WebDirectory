@@ -99,7 +99,7 @@
       <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
         <!-- Bootstrap Treeview for component card -->
         <ul id="treeview">
-        <li><span class="caret">IP</span>
+        <li><span class="caret d-flex"><div class="mx-1">IP</div></span>
           <ul class="nested">
             <li>component1</li>
             <li>component2</li>
@@ -192,7 +192,7 @@
     <div class="card mt-3 p-3 rounded-5 component m-3" id="${id}" style="width: fit-content;">
       <div class="card-body justify-content-start">
         <div class="d-flex gap-1">
-          <img src="src/img/robot.svg" class="" alt="...">
+          <img src="src/img/icon/robot.svg" class="" alt="...">
           <h5 class="card-title mt-2" ><a href="http://${ip_addr}">${ip_addr}</a></h5>
           <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${ip_addr_sel}" role="button" aria-expanded="false" aria-controls="${ip_addr}">collapse</button>
         </div>

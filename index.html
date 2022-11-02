@@ -99,7 +99,7 @@
       <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
         <!-- Bootstrap Treeview for component card -->
         <ul id="treeview">
-        <li><span class="caret d-flex"><div class="mx-1">IP</div></span>
+        <li class="caret_IP"><span class="caret d-flex"><div class="mx-1">IP</div></span>
           <ul class="nested">
             <li>component1</li>
             <li>component2</li>
@@ -158,6 +158,7 @@
       Parse_Server_Event(arg.id,arg.data,(Component_ID_Group,Component_ID_Map) => {
         Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
         console.log(Addr_Group_Map);
+        Create_Tree_Element(Addr_Group_Map);
         //Operate_Tree_data(Addr_Group_Map);
       });
       });

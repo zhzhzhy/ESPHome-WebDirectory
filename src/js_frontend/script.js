@@ -135,6 +135,9 @@ function Maintain_Addr_Group(params,Operation,callback) {
 }
 
 
+/*
+Expand treeview list
+*/
 function Tree_Toggle() {
   let toggler = document.getElementsByClassName("caret");
   let i;
@@ -145,4 +148,14 @@ function Tree_Toggle() {
     this.classList.toggle("caret-down");
   });
 }
+}
+
+function Create_Tree_Element(group_map,callback) {
+  let node = document.querySelector(".caret_IP");
+  console.log(node);
+  for(i of group_map.keys()){
+    console.log(i);
+    node.appendChild(document.createElement('li')).textContent = i;
+    
+    }
 }

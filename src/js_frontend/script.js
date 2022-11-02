@@ -152,10 +152,20 @@ function Tree_Toggle() {
 
 function Create_Tree_Element(group_map,callback) {
   let node = document.querySelector(".caret_IP");
-  console.log(node);
-  for(i of group_map.keys()){
+  let all_node = node.parentNode.parentNode;
+  //console.log(all_node.querySelector(".component_list"));
+  //console.log(node);
+  for(i of group_map.entries()){
     console.log(i);
-    node.appendChild(document.createElement('li')).textContent = i;
-    
+    node.textContent = i[0];
+    for(const [key, value] of Object.entries(i[1])){
+      console.log(value);
+        const component_key = value.forEach(element => {
+          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
+        });
+        const component_value = value;
+        //all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = component_key;
+      }
     }
+
 }

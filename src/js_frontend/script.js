@@ -160,9 +160,12 @@ function Create_Tree_Element(group_map,callback) {
     node.textContent = i[0];
     //console.log(i[1]);
     const component_group = i[1].Component_ID_Group;
-    const comment_map = i[1].Component_ID_Map;
+    const component_map = i[1].Component_ID_Map;
     component_group.forEach(element => {
-          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
+      if (!Component_ID_Group_Treeview.has(element)) {
+        all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
+        Component_ID_Group_Treeview.add(element);
+      }
         });
       
     }

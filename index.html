@@ -143,6 +143,7 @@
     let Addr_Group_Map = new Map();
     let Component_ID_Map = new Map();
     let Component_ID_Group = new Set(); //told why (closer variable)
+    let Component_ID_Group_Treeview = new Set();
     const socket = io();
     (() => {
     socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);

@@ -150,27 +150,3 @@ function Tree_Toggle() {
 }
 }
 
-function Create_Tree_Element(group_map,callback) {
-  let node = document.querySelector("#treeview");
-  let all_node = node.parentNode.parentNode;
-  let IP_node = node.createElement("li");
-  
-  //console.log(all_node.querySelector(".component_list"));
-  //console.log(node);
-  for(i of group_map.entries()){
-    //console.log(i);
-    //node.createElement("li").appendChild('span')
-    node.textContent = i[0];
-    //console.log(i[1]);
-    const component_group = i[1].Component_ID_Group;
-    const component_map = i[1].Component_ID_Map;
-    component_group.forEach(element => {
-      if (!Component_ID_Group_Treeview.has(element)) {
-        all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
-        Component_ID_Group_Treeview.add(element);
-      }
-        });
-      
-    }
-
-}

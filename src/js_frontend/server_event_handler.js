@@ -32,10 +32,30 @@ function Update_Tree_Data(id,data,callback) {
 }
 
 /*
-Append tree template HTML which is maped like data--id => data
-Append to index.html `Devices list` page
+Create tree template HTML which is maped like data--id => data
+callback to map data in && append to index.html `Devices list` page
 */
-function Append_Tree_Template(id,data,callback){
+function Create_Tree_Template(IP,component_name_group,component_data_map,callback){
+    let node = document.querySelector("#treeview");
+    const fragment = new DocumentFragment();
+    let li1 = document.createElement("li");
+    li1.id = IP;
+    let span1 = document.createElement("span");
+    span1.className = "caret d-flex";
+    let div1 = document.createElement("div");
+    div1.className = "mx-1 caret_IP";
+    div1.textContent = IP;
+    fragment.appendChild(li1).appendChild(span1).appendChild(div1);
+    ul = document.createElement("ul");
+    ul.className = "nested component_list";
+    fragment.querySelector(".li").appendChild(ul);
+    console.log("fragment: ",fragment);
+    component_name_group.forEach(element => {
+        if (!Component_ID_Group_Treeview.has(element)) {
+          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
+          Component_ID_Group_Treeview.add(element);
+        }
+          }); 
     
     //let template_tree = ``; //write HTML template fro bootstrap tree-view
 
@@ -59,3 +79,23 @@ function Operate_Tree_data(id,data,operation,callback){
 
     }
 }
+
+function Create_Tree_Element(group_map,callback) {
+
+
+    for(i of group_map.entries()){
+
+      div1.textContent = i[0];
+
+      const component_group = i[1].Component_ID_Group;
+      const component_map = i[1].Component_ID_Map;
+      component_group.forEach(element => {
+        if (!Component_ID_Group_Treeview.has(element)) {
+          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
+          Component_ID_Group_Treeview.add(element);
+        }
+          });
+        
+      }
+  
+  }

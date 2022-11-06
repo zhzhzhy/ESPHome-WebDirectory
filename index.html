@@ -134,7 +134,7 @@
   </section>
 
 
-  <script src="src/js_frontend/server_event_handler.js"></script>
+  <script src="src/js_frontend/treeview.js"></script>
   <script src="src/asset/socket.io/socket.io.min.js"></script>
 	<script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
@@ -158,7 +158,14 @@
       Parse_Server_Event(arg.id,arg.data,(Component_ID_Group,Component_ID_Map) => {
         Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
         console.log(Addr_Group_Map);
-        Create_Tree_Element(Addr_Group_Map);
+        Create_Tree_Template(IP,Component_ID_Group,"",(fragment) => {
+          let node = document.querySelector("#treeview");
+          while(node.firstChild) {
+            node.removeChild(node.firstChild)
+          }
+          node.appendChild(fragment);
+      });
+        //Create_Tree_Element(Addr_Group_Map);
         //Operate_Tree_data(Addr_Group_Map);
       });
       });

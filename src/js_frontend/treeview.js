@@ -51,7 +51,7 @@ function Create_Tree_Template(IP,component_name_group,component_data_map,callbac
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
     let ul_list = fragment.querySelector("li").appendChild(ul1);
-    console.log(ul_list);
+    //console.log(ul_list);
     component_name_group.forEach(element => {
           let li2 = document.createElement("li");
           li2.className = element.split('-')[0];

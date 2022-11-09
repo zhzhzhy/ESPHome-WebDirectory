@@ -14,7 +14,9 @@ function Parse_Server_Event(IP,data,callback) {
     // Component_ID_Map -> Object.Map is define in Object.name of Addr_Group_Map.get(IP)
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)
     let c_id = data_obj.id; //component object id(use this to determine unique id)
-    let c_id_obj = {c_id:{"live":"0","ttl":"30"}};//obj to describe attr of c_id
+    let c_id_obj = {};
+    c_id_obj[c_id] = {"live":"0","ttl":"30"};//obj to describe attr of c_id
+    console.log(c_id_obj);
     let c_value = data_obj.value; // not necessary
     let c_name = data_obj.name; // not necessary
     if (!Addr_Group_Map.has(IP)) {
@@ -24,15 +26,23 @@ function Parse_Server_Event(IP,data,callback) {
     }
     let group_data_set = Addr_Group_Map.get(IP).Component_ID_Group;
     let group_data_map = Addr_Group_Map.get(IP).Component_ID_Map;
-    if (!group_data_set.has(c_id)) {
-        
-        group_data_set.add(c_id);
-    }
+    group_data_set.forEach((element) => {
+        if (Object.keys(element).includes(c_id)) {
+            group_data_set.delete(element);
+        }
+    });
+
+        group_data_set.add(c_id_obj);
+   // if (!group_data_set.has(c_id)) {
+   //     
+   //     group_data_set.add(c_id);
+   // }
     group_data_map.set(c_id,data_obj);
     
     console.log(data_obj.id);  //comment later!
     console.log("Component_ID_Group: ",group_data_set); //comment later!
     console.log("Component_ID_Map",group_data_map); //comment later!
+    console.log(Addr_Group_Map);
     callback(group_data_set,group_data_map);
 }
 
@@ -61,9 +71,10 @@ function Create_Tree_Template(IP,component_name_group,component_data_map,callbac
     let ul_list = fragment.querySelector("li").appendChild(ul1);
     //console.log(ul_list);
     component_name_group.forEach(element => {
+          let element_text = Object.keys(element)[0];
           let li2 = document.createElement("li");
-          li2.className = element.split('-')[0];
-          li2.textContent = element;
+          li2.className = element_text.split('-')[0];
+          li2.textContent = element_text;
           ul_list.appendChild(li2); 
           Component_ID_Group_Treeview.add(element);
           }); 

@@ -142,7 +142,6 @@
     let Addr_Group = new Set();
     let Addr_Group_Map = new Map();
     let Component_ID_Map = new Map();
-    let Component_ID_Group = new Set(); //told why (closer variable)
     let Component_ID_Group_Treeview = new Set();
     const socket = io();
     (() => {
@@ -151,14 +150,11 @@
     socket.on("state", (arg) => {
       console.log(arg); 
       const state = JSON.parse(arg.data);
-      //console.log(state);
       const IP = arg.id;
       console.log(`From: ${IP}  data: ${state}`); 
-      //Append_Tree_Template(arg.id,arg.data,() => {});
-      Parse_Server_Event(arg.id,arg.data,(Component_ID_Group,Component_ID_Map) => {
-        Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
+      Parse_Server_Event(arg.id,arg.data,(group_data_set,group_data_map) => {
         console.log(Addr_Group_Map);
-        Create_Tree_Template(IP,Component_ID_Group,"",(fragment) => {
+        Create_Tree_Template(IP,group_data_set,"",(fragment) => {
           let node = document.querySelector("#treeview");
           while(node.firstChild) {
             node.removeChild(node.firstChild)

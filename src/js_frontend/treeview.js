@@ -10,22 +10,30 @@ Parse socket.io eventsource data to Set & Map for template usage
 Set:Component_ID_Group(Set include data--id) & Map:Component_ID_Map(Map like: data--id => data--object)
 */
 function Parse_Server_Event(IP,data,callback) {
-    // Component_ID_Group -> Object.Set is define global scope or in closer
-    // Component_ID_Map -> Object.Map is define global scope or in closer
+    // Component_ID_Group -> Object.Set is define in Object.name of Addr_Group_Map.get(IP)
+    // Component_ID_Map -> Object.Map is define in Object.name of Addr_Group_Map.get(IP)
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)
     let c_id = data_obj.id; //component object id(use this to determine unique id)
+    let c_id_obj = {c_id:{"live":"0","ttl":"30"}};//obj to describe attr of c_id
     let c_value = data_obj.value; // not necessary
     let c_name = data_obj.name; // not necessary
-    if (!Component_ID_Group.has(c_id)) {
-        
-        Component_ID_Group.add(c_id);
+    if (!Addr_Group_Map.has(IP)) {
+        let Component_ID_Group = new Set();
+        let Component_ID_Map = new Map();
+        Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
     }
-        Component_ID_Map.set(c_id,data_obj);
+    let group_data_set = Addr_Group_Map.get(IP).Component_ID_Group;
+    let group_data_map = Addr_Group_Map.get(IP).Component_ID_Map;
+    if (!group_data_set.has(c_id)) {
+        
+        group_data_set.add(c_id);
+    }
+    group_data_map.set(c_id,data_obj);
     
     console.log(data_obj.id);  //comment later!
-    console.log(Component_ID_Group); //comment later!
-    console.log(Component_ID_Map); //comment later!
-    callback(Component_ID_Group,Component_ID_Map);
+    console.log("Component_ID_Group: ",group_data_set); //comment later!
+    console.log("Component_ID_Map",group_data_map); //comment later!
+    callback(group_data_set,group_data_map);
 }
 
 function Update_Tree_Data(id,data,callback) {

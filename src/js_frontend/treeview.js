@@ -1,10 +1,10 @@
-class component {
-    constructor(IP,ID_Group,ID_Map) {
-        this.IP = IP;
-        this.ID_Group = ID_Group;
-        this.ID_Map = ID_Map;
-    }
-}
+//class component {
+    //constructor(IP,ID_Group,ID_Map) {
+        //this.IP = IP;
+        //this.ID_Group = ID_Group;
+        //this.ID_Map = ID_Map;
+    //}
+//}
 /*
 Parse socket.io eventsource data to Set & Map for template usage
 Set:Component_ID_Group(Set include data--id) & Map:Component_ID_Map(Map like: data--id => data--object)
@@ -15,7 +15,7 @@ function Parse_Server_Event(IP,data,callback) {
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)
     let c_id = data_obj.id; //component object id(use this to determine unique id)
     let c_id_obj = {};
-    c_id_obj[c_id] = {"live":"0","ttl":"30"};//obj to describe attr of c_id
+    c_id_obj[c_id] = {"live":"1","ttl":"30"};//obj to describe attr of c_id
     console.log(c_id_obj);
     let c_value = data_obj.value; // not necessary
     let c_name = data_obj.name; // not necessary

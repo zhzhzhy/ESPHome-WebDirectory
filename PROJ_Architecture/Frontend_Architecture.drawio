@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="0hvO-6whd5ErLaS7n1sP" name="Page-1">
-        <mxGraphModel dx="971" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
+        <mxGraphModel dx="694" dy="551" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Compomnent Data flow" style="swimlane;html=1;startSize=20;horizontal=0;childLayout=flowLayout;flowOrientation=west;resizable=0;interRankCellSpacing=50;containerType=tree;sketch=0;swimlaneFillColor=#000000;" parent="1" vertex="1">
+                <mxCell id="2" value="Frontend Compomnent Data flow" style="swimlane;html=1;startSize=20;horizontal=0;childLayout=flowLayout;flowOrientation=west;resizable=0;interRankCellSpacing=50;containerType=tree;sketch=0;swimlaneFillColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="1094" y="817" width="694" height="358" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="Backend(Node)" style="whiteSpace=wrap;html=1;rounded=1;strokeColor=#FFFFFF;" parent="2" vertex="1">

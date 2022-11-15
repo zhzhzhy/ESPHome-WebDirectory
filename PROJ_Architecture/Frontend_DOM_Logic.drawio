@@ -1,13 +1,1 @@
-<mxfile host="65bd71144e">
-    <diagram id="KwFimdPt4D1uUo9QuBNP" name="Page-1">
-        <mxGraphModel dx="1942" dy="1542" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
-            <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Frontend DOM logic" style="swimlane;" vertex="1" parent="1">
-                    <mxGeometry x="98" y="151" width="3030" height="1964" as="geometry"/>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
-</mxfile>
+<mxfile host="Electron" modified="2022-11-15T15:25:37.277Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.3.0 Chrome/104.0.5112.114 Electron/20.1.3 Safari/537.36" etag="uq0QgDByfNZ7ULU8dn56" version="20.3.0" type="device"><diagram id="KwFimdPt4D1uUo9QuBNP" name="Page-1">7VfLjpswFP0alh0BhgDbkMl00bSLVKo6m5GDHbDGYGSckPTrex1MBmqStotEo6pESsy5169zjh9xUFoeniSui5UglDu+Sw4OWji+78Uogh+NHA3i+qhDcslIh7lvwJr9oH2iQXeM0MZgHaSE4IrVYzATVUUzNcKwlKIdp20FJyOgxjm1gHWGuY1+Y0QVHYqQ674FPlKWF6ZrCCVdpMR9tkltCkxEO4DQo4NSKYTqSuUhpVzTNyZmeSF6HpmklRp1tGcN2/QTuN6Ib2pgvjP5SykqRSsC6OLLCr65yFlmZqCOfbNNy0qOK3ib98Ul4zwVXMhTBjCkH4jb4zRD31Op6GEAmTE+UVFSJY+QYqJJ3NXoXRSaFtqBJC4y0y8GcnjJLDBmMEbIz42/0QIFw8w0S/nr9/mLeKaUPe8SKVfRJv38wQst7oCwF4IVvqTMJRUm2/cTu326ZxmsBt9NsSSWJoUqYQYLT2vSe00LQHBTUGJeIFLr/PKQ6yX7sAH/NQqKDwpvvopapygpXulAysVSfyCyHUu8PT2AS7NwQyjXVDJgmOqcSpwc0hZM0XWNM53TQl+6Cm2gTr+m9JgxZ3kF5QxY07XnDdRgVQ6Qr0e+BWOafrzAvA8GE8xDP0zOfrPMNRbkiqQXXRi50ciGfpRYNownTBi4N7Jg7/hJi3DWKHvZjqQ18gxVNdB7ENR143CZ3lTQxP+toOFdBfUsQT+JPMP/hbwuZBy+NyHtg3VNlQLOmn9DyrtvvskfbL6zu0qMLIltac1hy1l3U/r1YCWn56ZbXDymDXmBRVvkTt2cbsbb7MKh1d/Gr1w1b0ZTEAYjmmKbJc+PZhP2SmZ/zZOjL9n9rf8UG/x7Qo8/AQ==</diagram></mxfile>

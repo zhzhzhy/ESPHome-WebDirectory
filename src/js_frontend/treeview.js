@@ -74,7 +74,7 @@ function Create_Tree_Template(IP,component_name_group,component_data_map,callbac
     const fragment = new DocumentFragment();
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g,"_");
-    div0.className = "TreeviewIPList"
+    div0.className = "TreeviewIPList";
     let span1 = document.createElement("span");
     span1.className = "caret d-flex";
     let div1 = document.createElement("div");

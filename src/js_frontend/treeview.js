@@ -53,22 +53,37 @@ function Update_Tree_Data(id,data,callback) {
 /*
 Create tree template HTML which is maped like data--id => data
 callback to map data in && append to index.html `Devices list` page
+
+------
+Treeview structure:
+
+div0.TreeviewIPList
+    span1.caret.d-flex
+        div1.mx-1.caret_IP  (IP)
+    ul1.nested.component_list
+        li2.`element_text.split('-')[0];`
+        ...
+        ...
+        ...
+    
+------
 */
 function Create_Tree_Template(IP,component_name_group,component_data_map,callback){
     //let node = document.querySelector("#treeview");
     //const tree = new tree_structure(IP,component_name_group,component_data_map);
     const fragment = new DocumentFragment();
-    let li1 = document.createElement("li");
-    li1.id = IP.replace(/\./g,"_");
+    let div0 = document.createElement("div");
+    div0.id = IP.replace(/\./g,"_");
+    div0.className = "TreeviewIPList"
     let span1 = document.createElement("span");
     span1.className = "caret d-flex";
     let div1 = document.createElement("div");
     div1.className = "mx-1 caret_IP";
     div1.textContent = IP;
-    fragment.appendChild(li1).appendChild(span1).appendChild(div1);
+    fragment.appendChild(div0).appendChild(span1).appendChild(div1);
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
-    let ul_list = fragment.querySelector("li").appendChild(ul1);
+    let ul_list = fragment.querySelector("div").appendChild(ul1);
     //console.log(ul_list);
     component_name_group.forEach(element => {
           let element_text = Object.keys(element)[0];

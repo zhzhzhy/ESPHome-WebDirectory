@@ -155,9 +155,11 @@
       Parse_Server_Event(arg.id,arg.data,(group_data_set,group_data_map) => {
         console.log(Addr_Group_Map);
         Create_Tree_Template(IP,group_data_set,"",(fragment) => {
-          let node = document.querySelector("#treeview");
-          while(node.firstChild) {
-            node.removeChild(node.firstChild)
+          let node = document.getElementById("treeview");
+          //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
+          let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
+          while(node.firstElementChild) {
+            node.removeChild(node.firstElementChild)
           }
           node.appendChild(fragment);
           Tree_Toggle();

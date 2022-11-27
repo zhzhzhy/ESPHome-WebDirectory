@@ -91,7 +91,7 @@ function createTreeTemplate(IP,componentNameGroup,componentDataMap,callback){
           li2.className = element_text.split('-')[0];
           li2.textContent = element_text;
           ul_list.appendChild(li2); 
-          componentIDGroupTreeview.add(element);
+          componentIDGroupTreeview.add(element); //BUG!
           }); 
     callback(fragment);
 

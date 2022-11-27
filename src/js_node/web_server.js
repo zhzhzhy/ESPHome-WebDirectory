@@ -20,7 +20,7 @@ const __dirname = path.resolve();
 let addrGroup = new Set();
 
 io.on('connection', (socket) => {
-  socket.on("Sync_addrGroup",(msg) => {
+  socket.on("syncAddrGroup",(msg) => {
     maintainAddrGroup(msg,'sync',(data) => {
       for(let i of data) 
       EventHandler(i,"state",(a) => {socket.emit("state",{ id: i, data: a});});

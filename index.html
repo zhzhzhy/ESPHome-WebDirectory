@@ -145,7 +145,7 @@
     let componentIDGroupTreeview = new Set();
     const socket = io();
     (() => {
-    socket.emit("Sync_addrGroup",[...addrGroup.values()]);
+    socket.emit("syncAddrGroup",[...addrGroup.values()]);
 
     socket.on("state", (arg) => {
       console.log(arg); 
@@ -180,7 +180,7 @@
       (data) => {
       maintainAddrGroup(data,"add",() => {
         addComponentCard(data,$("#device_list"));
-        socket.emit("Sync_addrGroup",[...addrGroup.values()]); 
+        socket.emit("syncAddrGroup",[...addrGroup.values()]); 
             }
         )}
       );

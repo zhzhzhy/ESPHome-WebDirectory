@@ -7,11 +7,11 @@
 //}
 /*
 Parse socket.io eventsource data to Set & Map for template usage
-Set:Component_ID_Group(Set include data--id) & Map:Component_ID_Map(Map like: data--id => data--object)
+Set:Component_ID_Group(Set include data--id) & Map:componentIDMap(Map like: data--id => data--object)
 */
 function parseServerEvent(IP,data,callback) {
-    // Component_ID_Group -> Object.Set is define in Object.name of Addr_Group_Map.get(IP)
-    // Component_ID_Map -> Object.Map is define in Object.name of Addr_Group_Map.get(IP)
+    // Component_ID_Group -> Object.Set is define in Object.name of addrGroupMap.get(IP)
+    // componentIDMap -> Object.Map is define in Object.name of addrGroupMap.get(IP)
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)
     let c_id = data_obj.id; //component object id(use this to determine unique id)
     let c_id_obj = {};
@@ -19,13 +19,13 @@ function parseServerEvent(IP,data,callback) {
     console.log(c_id_obj);
     let c_value = data_obj.value; // not necessary
     let c_name = data_obj.name; // not necessary
-    if (!Addr_Group_Map.has(IP)) {
+    if (!addrGroupMap.has(IP)) {
         let Component_ID_Group = new Set();
-        let Component_ID_Map = new Map();
-        Addr_Group_Map.set(IP,{Component_ID_Group,Component_ID_Map});
+        let componentIDMap = new Map();
+        addrGroupMap.set(IP,{Component_ID_Group,componentIDMap});
     }
-    let group_data_set = Addr_Group_Map.get(IP).Component_ID_Group;
-    let group_data_map = Addr_Group_Map.get(IP).Component_ID_Map;
+    let group_data_set = addrGroupMap.get(IP).Component_ID_Group;
+    let group_data_map = addrGroupMap.get(IP).componentIDMap;
     group_data_set.forEach((element) => {
         if (Object.keys(element).includes(c_id)) {
             group_data_set.delete(element);
@@ -41,8 +41,8 @@ function parseServerEvent(IP,data,callback) {
     
     console.log(data_obj.id);  //comment later!
     console.log("Component_ID_Group: ",group_data_set); //comment later!
-    console.log("Component_ID_Map",group_data_map); //comment later!
-    console.log(Addr_Group_Map);
+    console.log("componentIDMap",group_data_map); //comment later!
+    console.log(addrGroupMap);
     callback(group_data_set,group_data_map);
 }
 
@@ -91,7 +91,7 @@ function createTreeTemplate(IP,component_name_group,component_data_map,callback)
           li2.className = element_text.split('-')[0];
           li2.textContent = element_text;
           ul_list.appendChild(li2); 
-          Component_ID_Group_Treeview.add(element);
+          componentIDGroupTreeview.add(element);
           }); 
     callback(fragment);
 
@@ -102,7 +102,7 @@ function Remove_Tree_Template(id,data,callback){
 }
 
 /*
-Operate exist Set(Component_ID_Group) and Map(Component_ID_Map)
+Operate exist Set(Component_ID_Group) and Map(componentIDMap)
 */
 function operateTreedata(id,data,operation,callback){
     if(operation === "add"){
@@ -124,11 +124,11 @@ function createTreeElement(group_map,callback) {
 //      div1.textContent = i[0];
 
 //      const component_group = i[1].Component_ID_Group;
-//      const component_map = i[1].Component_ID_Map;
+//      const component_map = i[1].componentIDMap;
 //      component_group.forEach(element => {
-//        if (!Component_ID_Group_Treeview.has(element)) {
+//        if (!componentIDGroupTreeview.has(element)) {
 //          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
-//          Component_ID_Group_Treeview.add(element);
+//          componentIDGroupTreeview.add(element);
 //        }
 //          });
         

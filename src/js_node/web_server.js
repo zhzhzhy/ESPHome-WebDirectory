@@ -7,7 +7,7 @@ import { Server } from "socket.io";
 import express from 'express';
 import path from 'path';
 import EventHandler from './eventhandler.js'
-import { Maintain_Addr_Group } from "./app.js";
+import { maintainAddrGroup } from "./app.js";
 
 (() => {
 
@@ -17,11 +17,11 @@ const io = new Server(server);
 const port = 5000
 const __dirname = path.resolve();
 
-let Addr_Group = new Set();
+let addrGroup = new Set();
 
 io.on('connection', (socket) => {
-  socket.on("Sync_Addr_Group",(msg) => {
-    Maintain_Addr_Group(msg,'sync',(data) => {
+  socket.on("Sync_addrGroup",(msg) => {
+    maintainAddrGroup(msg,'sync',(data) => {
       for(let i of data) 
       EventHandler(i,"state",(a) => {socket.emit("state",{ id: i, data: a});});
     })

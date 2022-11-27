@@ -139,13 +139,13 @@
 	<script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
   <script>
-    let Addr_Group = new Set();
-    let Addr_Group_Map = new Map();
-    let Component_ID_Map = new Map();
-    let Component_ID_Group_Treeview = new Set();
+    let addrGroup = new Set();
+    let addrGroupMap = new Map();
+    let componentIDMap = new Map();
+    let componentIDGroupTreeview = new Set();
     const socket = io();
     (() => {
-    socket.emit("Sync_Addr_Group",[...Addr_Group.values()]);
+    socket.emit("Sync_addrGroup",[...addrGroup.values()]);
 
     socket.on("state", (arg) => {
       console.log(arg); 
@@ -153,7 +153,7 @@
       const IP = arg.id;
       console.log(`From: ${IP}  data: ${state}`); 
       parseServerEvent(arg.id,arg.data,(group_data_set,group_data_map) => {
-        console.log(Addr_Group_Map);
+        console.log(addrGroupMap);
         createTreeTemplate(IP,group_data_set,"",(fragment) => {
           let node = document.getElementById("treeview");
           //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
@@ -164,8 +164,8 @@
           node.appendChild(fragment);
           toggleTree();
       });
-        //createTreeElement(Addr_Group_Map);
-        //operateTreedata(Addr_Group_Map);
+        //createTreeElement(addrGroupMap);
+        //operateTreedata(addrGroupMap);
       });
       });
 
@@ -176,11 +176,11 @@
   <script>
 
     $(document).ready(() =>{
-    Handle_Input_IP(
+    handleInputIP(
       (data) => {
-      Maintain_Addr_Group(data,"add",() => {
-        Add_Component_Card(data,$("#device_list"));
-        socket.emit("Sync_Addr_Group",[...Addr_Group.values()]); 
+      maintainAddrGroup(data,"add",() => {
+        addComponentCard(data,$("#device_list"));
+        socket.emit("Sync_addrGroup",[...addrGroup.values()]); 
             }
         )}
       );
@@ -208,7 +208,7 @@
             <p class="card-text">Lorem ipsum dolor sit amet.</p>
             <div class="d-flex justify-content-start">
               <button  class="btn btn-primary m-2">logs</button>
-              <button  class="btn btn-primary m-2 remove" onclick="Remove_Component();" >remove</button>
+              <button  class="btn btn-primary m-2 remove" onclick="removeComponent();" >remove</button>
             </div>
         </div>
       </div>

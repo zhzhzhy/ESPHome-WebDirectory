@@ -1,72 +1,72 @@
-//class component {
-    //constructor(IP,ID_Group,ID_Map) {
-        //this.IP = IP;
-        //this.ID_Group = ID_Group;
-        //this.ID_Map = ID_Map;
-    //}
-//}
+
 /*
-Parse socket.io eventsource data to Set & Map for template usage
-Set:Component_ID_Group(Set include data--id) & Map:componentIDMap(Map like: data--id => data--object)
+*Parse socket.io eventsource data to Set & Map for template usage
+*Set:componentIDGroup(Set include data--id) & Map:componentIDMap(Map like: data--id => data--object)
 */
 function parseServerEvent(IP,data,callback) {
-    // Component_ID_Group -> Object.Set is define in Object.name of addrGroupMap.get(IP)
+    // componentIDGroup -> Object.Set is define in Object.name of addrGroupMap.get(IP)
     // componentIDMap -> Object.Map is define in Object.name of addrGroupMap.get(IP)
-    let data_obj = JSON.parse(data); //component data object(use this as template raw data)
-    let c_id = data_obj.id; //component object id(use this to determine unique id)
-    let c_id_obj = {};
-    c_id_obj[c_id] = {"live":"1","ttl":"30"};//obj to describe attr of c_id
-    console.log(c_id_obj);
-    let c_value = data_obj.value; // not necessary
-    let c_name = data_obj.name; // not necessary
+    let dataObj = JSON.parse(data); //component data object(use this as template raw data)
+    let cId = dataObj.id; //component object id(use this to determine unique id)
+    let cIdObj = {};
+    cIdObj[cId] = {"live":"1","ttl":"30"};//obj to describe attr of cId
+    console.log(cIdObj);
+    let cValue = dataObj.value; // not necessary
+    let cName = dataObj.name; // not necessary
     if (!addrGroupMap.has(IP)) {
-        let Component_ID_Group = new Set();
+        let componentIDGroup = new Set();
         let componentIDMap = new Map();
-        addrGroupMap.set(IP,{Component_ID_Group,componentIDMap});
+        addrGroupMap.set(IP,{componentIDGroup,componentIDMap});
     }
-    let group_data_set = addrGroupMap.get(IP).Component_ID_Group;
-    let group_data_map = addrGroupMap.get(IP).componentIDMap;
-    group_data_set.forEach((element) => {
-        if (Object.keys(element).includes(c_id)) {
-            group_data_set.delete(element);
+    let groupDataSet = addrGroupMap.get(IP).componentIDGroup;
+    let groupDataMap = addrGroupMap.get(IP).componentIDMap;
+    groupDataSet.forEach((element) => {
+        if (Object.keys(element).includes(cId)) {
+            groupDataSet.delete(element);
         }
     });
 
-        group_data_set.add(c_id_obj);
-   // if (!group_data_set.has(c_id)) {
+        groupDataSet.add(cIdObj);
+   // if (!groupDataSet.has(cId)) {
    //     
-   //     group_data_set.add(c_id);
+   //     groupDataSet.add(cId);
    // }
-    group_data_map.set(c_id,data_obj);
+    groupDataMap.set(cId,dataObj);
     
-    console.log(data_obj.id);  //comment later!
-    console.log("Component_ID_Group: ",group_data_set); //comment later!
-    console.log("componentIDMap",group_data_map); //comment later!
+    console.log(dataObj.id);  //comment later!
+    console.log("componentIDGroup: ",groupDataSet); //comment later!
+    console.log("componentIDMap",groupDataMap); //comment later!
     console.log(addrGroupMap);
-    callback(group_data_set,group_data_map);
+    callback(groupDataSet,groupDataMap);
 }
 
 function updateTreeData(callback) {
-    
+    let node = document.getElementById("treeview");
+    //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
+    let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
+    for (const items of TreeviewNodeLists) {
+       items.id
+       //console.log("ip==============:",items.id);
+    }
 }
 
 /*
-Create tree template HTML which is maped like data--id => data
-callback to map data in && append to index.html `Devices list` page
+*Create tree template HTML which is maped like data--id => data
+*callback to map data in && append to index.html `Devices list` page
 
-------
-Treeview structure:
+*------
+*Treeview structure:
 
-div0.TreeviewIPList
-    span1.caret.d-flex
-        div1.mx-1.caret_IP  (IP)
-    ul1.nested.component_list
-        li2.`element_text.split('-')[0];`
-        ...
-        ...
-        ...
+*div0.TreeviewIPList
+    *span1.caret.d-flex
+        *div1.mx-1.caret_IP  (IP)
+    *ul1.nested.component_list
+        *li2.`element_text.split('-')[0];`
+        *...
+        *...
+        *...
     
-------
+*------
 */
 function createTreeTemplate(IP,component_name_group,component_data_map,callback){
     //let node = document.querySelector("#treeview");
@@ -102,7 +102,7 @@ function Remove_Tree_Template(id,data,callback){
 }
 
 /*
-Operate exist Set(Component_ID_Group) and Map(componentIDMap)
+*Operate exist Set(componentIDGroup) and Map(componentIDMap)
 */
 function operateTreedata(id,data,operation,callback){
     if(operation === "add"){
@@ -123,7 +123,7 @@ function createTreeElement(group_map,callback) {
 
 //      div1.textContent = i[0];
 
-//      const component_group = i[1].Component_ID_Group;
+//      const component_group = i[1].componentIDGroup;
 //      const component_map = i[1].componentIDMap;
 //      component_group.forEach(element => {
 //        if (!componentIDGroupTreeview.has(element)) {
@@ -137,7 +137,7 @@ function createTreeElement(group_map,callback) {
   }
 
   /*
-Expand treeview list
+*Expand treeview list
 */
 function toggleTree() {
     let toggler = document.getElementsByClassName("caret");

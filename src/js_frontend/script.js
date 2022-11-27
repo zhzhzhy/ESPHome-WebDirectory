@@ -1,12 +1,12 @@
 /*
-include in index.html 
-handle page event 
+*include in index.html 
+*handle page event 
 */
 
 
 /*
-Bootstrap alert syntax
-Define a new alert using bootstrap alert class
+*Bootstrap alert syntax
+*Define a new alert using bootstrap alert class
 */
 const alertBS = (message, type,alertPlaceholder) => {
   const wrapper = document.createElement('div')
@@ -24,7 +24,7 @@ const alertBS = (message, type,alertPlaceholder) => {
 }
 
 /* 
-append template HTML in the text/template section of <script> tag
+*append template HTML in the text/template section of <script> tag
 */
 function appendTemplate(selector,items) {
   var itemTpl = $('script[data-template="template_card"]').text().split(/\$\{(.+?)\}/g);
@@ -41,24 +41,24 @@ function appendTemplate(selector,items) {
 
 // handle IP input to addComponentCard
 function handleInputIP(callback) {
-    let Input_IP;
-    function handle_event(){
-      Input_IP =  document.getElementById('IP_address');
-    if(!Input_IP?.value){
+    let inputIP;
+    function handleEvent(){
+      inputIP =  document.getElementById('ipAddress');
+    if(!inputIP?.value){
       alertBS("Empty IP address!","danger",$("#IP_input_box"));
     }else{ 
-    console.log("IP addr & component added: ",Input_IP.value);
-    callback(Input_IP?.value);
+    console.log("IP addr & component added: ",inputIP.value);
+    callback(inputIP?.value);
     }
     }
 
     $("#basic-Commit-IP").click(function(){
-      handle_event();
+      handleEvent();
   });
 
-    $("#IP_address").on('keyup', function (e) {
+    $("#ipAddress").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
-      handle_event();
+      handleEvent();
 
     }
 });
@@ -66,34 +66,34 @@ function handleInputIP(callback) {
 }
 
 //Old addComponent function deprecated 
-function addComponent(data,Jquery_Object){
-      const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
-      if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
-      let Data_Append = Jquery_Object.attr("id",data);
-      $("#device_list").prepend(Data_Append);
+function addComponent(data,jqueryObject){
+      const ipRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+      if((typeof data === 'string' || data instanceof String) && ipRegex.test(data)){
+      let dataAppend = jqueryObject.attr("id",data);
+      $("#device_list").prepend(dataAppend);
       const id = data.replace(/\./g,"\\.");
-      const selector_h5 = '#' + id + ' ' + 'h5.card-title';
-      $(selector_h5).html(`${data}`);
+      const selectorH5 = '#' + id + ' ' + 'h5.card-title';
+      $(selectorH5).html(`${data}`);
       }else{
         alertBS(`IP address invalid: ${data}`,"danger",$("#IP_input_box"));
       }
 }
 
 /*
-Add Component_Card :
-data as IP(text in the input box)
-selector as where to prepend()
+*Add Component_Card :
+*data as IP(text in the input box)
+*selector as where to prepend()
 */
 function addComponentCard(data,selector){
-  const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
-  if((typeof data === 'string' || data instanceof String) && ip_regex.test(data)){
-    let ip_addr_selector = data.replace(/\./g,"_");
-    ip_addr_selector = "id_" + ip_addr_selector;
-    let ip_addr = data;
+  const ipRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+  if((typeof data === 'string' || data instanceof String) && ipRegex.test(data)){
+    let ipAddrSelector = data.replace(/\./g,"_");
+    ipAddrSelector = "id_" + ipAddrSelector;
+    let ipAddr = data;
     let items = [{
         id: `${data}`,
-        ip_addr: `${ip_addr}`,
-        ip_addr_sel: `${ip_addr_selector}`
+        ipAddr: `${ipAddr}`,
+        ipAddr_sel: `${ipAddrSelector}`
       }];
     appendTemplate(selector,items); 
   }else{
@@ -102,7 +102,7 @@ function addComponentCard(data,selector){
 }
 
 /*
-Remove card
+*Remove card
 */
 function removeComponent(){
   $("div.component").on('click',"button.remove",function() {
@@ -111,7 +111,7 @@ function removeComponent(){
 }
 
 /* 
-Maintain a group of added components IP address
+*Maintain a group of added components IP address
 */
 function maintainAddrGroup(params,Operation,callback) {
   try {

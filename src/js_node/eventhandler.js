@@ -1,9 +1,9 @@
 import EventSource from 'eventsource';
 
 /* 
-Eventhandler for ESPHome Eventsource API
- Example:: 
- EvenHandler("10.0.0.190","state");
+*Eventhandler for ESPHome Eventsource API
+ *Example:: 
+ *EvenHandler("10.0.0.190","state");
 */
 
 export default function EvenHandler(addr,types,callback) {
@@ -15,7 +15,7 @@ evtSource.addEventListener('open', function(e) {
     //callback function to do anything else
     //callback(e);
     /*
-    may cause Event { type: 'open' } not recoginized by JSON
+    *may cause Event { type: 'open' } not recoginized by JSON
     */
   }, false);
 

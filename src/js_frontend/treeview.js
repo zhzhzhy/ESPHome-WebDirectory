@@ -68,9 +68,9 @@ function updateTreeData(callback) {
     
 *------
 */
-function createTreeTemplate(IP,component_name_group,component_data_map,callback){
+function createTreeTemplate(IP,componentNameGroup,componentDataMap,callback){
     //let node = document.querySelector("#treeview");
-    //const tree = new tree_structure(IP,component_name_group,component_data_map);
+    //const tree = new tree_structure(IP,componentNameGroup,componentDataMap);
     const fragment = new DocumentFragment();
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g,"_");
@@ -85,7 +85,7 @@ function createTreeTemplate(IP,component_name_group,component_data_map,callback)
     ul1.className = "nested component_list";
     let ul_list = fragment.querySelector("div").appendChild(ul1);
     //console.log(ul_list);
-    component_name_group.forEach(element => {
+    componentNameGroup.forEach(element => {
           let element_text = Object.keys(element)[0];
           let li2 = document.createElement("li");
           li2.className = element_text.split('-')[0];

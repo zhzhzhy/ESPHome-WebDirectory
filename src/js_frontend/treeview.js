@@ -9,7 +9,7 @@
 Parse socket.io eventsource data to Set & Map for template usage
 Set:Component_ID_Group(Set include data--id) & Map:Component_ID_Map(Map like: data--id => data--object)
 */
-function Parse_Server_Event(IP,data,callback) {
+function parseServerEvent(IP,data,callback) {
     // Component_ID_Group -> Object.Set is define in Object.name of Addr_Group_Map.get(IP)
     // Component_ID_Map -> Object.Map is define in Object.name of Addr_Group_Map.get(IP)
     let data_obj = JSON.parse(data); //component data object(use this as template raw data)
@@ -46,7 +46,7 @@ function Parse_Server_Event(IP,data,callback) {
     callback(group_data_set,group_data_map);
 }
 
-function Update_Tree_Data(id,data,callback) {
+function updateTreeData(callback) {
     
 }
 
@@ -68,7 +68,7 @@ div0.TreeviewIPList
     
 ------
 */
-function Create_Tree_Template(IP,component_name_group,component_data_map,callback){
+function createTreeTemplate(IP,component_name_group,component_data_map,callback){
     //let node = document.querySelector("#treeview");
     //const tree = new tree_structure(IP,component_name_group,component_data_map);
     const fragment = new DocumentFragment();
@@ -104,7 +104,7 @@ function Remove_Tree_Template(id,data,callback){
 /*
 Operate exist Set(Component_ID_Group) and Map(Component_ID_Map)
 */
-function Operate_Tree_data(id,data,operation,callback){
+function operateTreedata(id,data,operation,callback){
     if(operation === "add"){
         Append_Tree_Template();
     }
@@ -116,7 +116,7 @@ function Operate_Tree_data(id,data,operation,callback){
     }
 }
 
-function Create_Tree_Element(group_map,callback) {
+function createTreeElement(group_map,callback) {
 
 
 //    for(i of group_map.entries()){
@@ -139,7 +139,7 @@ function Create_Tree_Element(group_map,callback) {
   /*
 Expand treeview list
 */
-function Tree_Toggle() {
+function toggleTree() {
     let toggler = document.getElementsByClassName("caret");
     let i;
     console.log(toggler); 

@@ -152,9 +152,9 @@
       const state = JSON.parse(arg.data);
       const IP = arg.id;
       console.log(`From: ${IP}  data: ${state}`); 
-      Parse_Server_Event(arg.id,arg.data,(group_data_set,group_data_map) => {
+      parseServerEvent(arg.id,arg.data,(group_data_set,group_data_map) => {
         console.log(Addr_Group_Map);
-        Create_Tree_Template(IP,group_data_set,"",(fragment) => {
+        createTreeTemplate(IP,group_data_set,"",(fragment) => {
           let node = document.getElementById("treeview");
           //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
           let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
@@ -162,10 +162,10 @@
             node.removeChild(node.firstElementChild)
           }
           node.appendChild(fragment);
-          Tree_Toggle();
+          toggleTree();
       });
-        //Create_Tree_Element(Addr_Group_Map);
-        //Operate_Tree_data(Addr_Group_Map);
+        //createTreeElement(Addr_Group_Map);
+        //operateTreedata(Addr_Group_Map);
       });
       });
 

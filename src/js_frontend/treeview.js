@@ -1,3 +1,4 @@
+const { data } = require("jquery");
 
 /*
 *Parse socket.io eventsource data to Set & Map for template usage
@@ -51,19 +52,39 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
             // <div id="10_0_0_190" class="TreeviewIPList"><span class="caret d-flex"><div class="mx-1 caret_IP">10.0.0.190</div></span><ul class="nested component_list"><li class="binary_sensor">binary_sensor-pir_sensor</li></ul></div>
             if (newItemsId == IP) {
                 let componentListElement = items.getElementsByClassName("component_list");
+                let componentDivElement = items.getElementsByClassName("component_div");
                 let componentLiElement = items.getElementsByClassName("component_li");
                 for (const list of componentLiElement) {
-                    const listText = list.innerHTML;
+                    const listText = list.textContent;
                     componentNameGroupTreeview.add(listText);
                     }
-                for (const iterator of ObjStringSet) {
-                    if (!componentNameGroupTreeview.has(iterator)) {
+                // Render component_list
+                // for (const iterator of ObjStringSet) {
+                //     if (!componentNameGroupTreeview.has(iterator)) {
+                //         let li2 = document.createElement("li");
+                //         li2.classList.add(iterator.split('-')[0],"component_li");
+                //         li2.textContent = iterator;
+                //         componentListElement[0].appendChild(li2);
+                //     }
+                //     }    
+                //Render component data
+                for (const iterator of groupDataMap.entries()) {
+                    const selector = iterator[0];
+                    //console.log(selector,componentNameGroupTreeview,componentNameGroupTreeview.has(selector));
+                    const data = JSON.stringify(iterator[1]);
+                    if (!componentNameGroupTreeview.has(selector)) {
+                        let div1 = document.createElement("div");
+                        div1.classList.add(iterator[0].split('-')[0],"component_div");
                         let li2 = document.createElement("li");
-                        li2.classList.add(iterator.split('-')[0],"component_li");
-                        li2.textContent = iterator;
-                        componentListElement[0].appendChild(li2);
-                    }
-                }    
+                        li2.classList.add(iterator[0].split('-')[0],"component_li");
+                        li2.textContent = iterator[0]; 
+                        let dataElement = document.createElement("div")
+                        dataElement.textContent = data;
+                        div1.appendChild(dataElement);
+                        div1.prepend(li2);
+                        componentListElement[0].appendChild(div1);
+                    } 
+                }
                   }
                 } 
             }

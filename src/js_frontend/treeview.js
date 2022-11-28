@@ -10,10 +10,8 @@ function parseServerEvent(IP,data,groupDataSet,groupDataMap,callback) {
     let cId = dataObj.id; //component object id(use this to determine unique id)
     let cIdObj = {};
     cIdObj[cId] = {"live":"1","ttl":"30"};//obj to describe attr of cId
-    //console.log(cIdObj);
     let cValue = dataObj.value; // not necessary
     let cName = dataObj.name; // not necessary
-
 
     groupDataSet.forEach((element) => {
         if (Object.keys(element).includes(cId)) {
@@ -21,42 +19,57 @@ function parseServerEvent(IP,data,groupDataSet,groupDataMap,callback) {
         }
     });
 
-        groupDataSet.add(cIdObj);
+    groupDataSet.add(cIdObj);
 
     groupDataMap.set(cId,dataObj);
     
-    //console.log(dataObj.id);  //comment later!
-    //console.log("componentIDGroup: ",groupDataSet); //comment later!
-    //console.log("componentIDMap",groupDataMap); //comment later!
+
     console.log("addrGroupMap",addrGroupMap);
+    //callback();
     
 }
 
 function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     let node = document.getElementById("treeview");
     let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
-    let ObjSet = new Set();
+    let ObjStringSet = new Set();
+    let componentNameGroupTreeview = new Set();
     for (const element of groupDataSet) {
-            ObjSet.add(Object.keys(element)[0]);
+            ObjStringSet.add(Object.keys(element)[0]);
        }
-    console.log("ObjSet",ObjSet);
-    console.log("TreeviewNodeLists",TreeviewNodeLists);
+
     if(TreeviewNodeLists.length == 0){
-        console.log(TreeviewNodeLists.length);
-        setTimeout(() => {
             createTreeTemplate(IP,groupDataSet,groupDataMap,(fragment) => {
             node.appendChild(fragment);
-            //console.log(fragment);
             })
-        }, 5000);
+       
     }
     else{
         for (const items of TreeviewNodeLists) {
-            const newItems = items?.id.replace(/_/g,"\.");
-            console.log("newItems",newItems);
+            const newItemsId = items?.id.replace(/_/g,"\.");
+            //console.log("items",items);
+            // <div id="10_0_0_190" class="TreeviewIPList"><span class="caret d-flex"><div class="mx-1 caret_IP">10.0.0.190</div></span><ul class="nested component_list"><li class="binary_sensor">binary_sensor-pir_sensor</li></ul></div>
+            if (newItemsId == IP) {
+                let componentListElement = items.getElementsByClassName("component_list");
+                let componentLiElement = items.getElementsByClassName("component_li");
+                for (const list of componentLiElement) {
+                    const listText = list.innerHTML;
+                    componentNameGroupTreeview.add(listText);
+                    }
+                for (const iterator of ObjStringSet) {
+                    if (!componentNameGroupTreeview.has(iterator)) {
+                        let li2 = document.createElement("li");
+                        li2.classList.add(iterator.split('-')[0],"component_li");
+                        li2.textContent = iterator;
+                        componentListElement[0].appendChild(li2);
+                    }
+                }    
+                  }
+                } 
             }
+        
         };
-}
+
        
 
 
@@ -100,7 +113,7 @@ function createTreeTemplate(IP,groupDataSet,groupDataMap,callback){
     componentNameGroup.forEach(element => {
           let element_text = Object.keys(element)[0];
           let li2 = document.createElement("li");
-          li2.className = element_text.split('-')[0];
+          li2.classList.add(element_text.split('-')[0],"component_li");
           li2.textContent = element_text;
           ul_list.appendChild(li2); 
           //componentIDGroupTreeview.add(element); //BUG!
@@ -109,6 +122,22 @@ function createTreeTemplate(IP,groupDataSet,groupDataMap,callback){
 
 }
 
+/*
+*Expand treeview list
+*/
+function toggleTree() {
+    let toggler = document.getElementsByClassName("caret");
+    let i;
+    //console.log(toggler); 
+    for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+      this.parentElement.querySelector(".nested").classList.toggle("active");
+      this.classList.toggle("caret-down");
+    });
+  }
+  }
+  
+  
 function Remove_Tree_Template(id,data,callback){
     
 }
@@ -148,18 +177,3 @@ function createTreeElement(group_map,callback) {
   
   }
 
-  /*
-*Expand treeview list
-*/
-function toggleTree() {
-    let toggler = document.getElementsByClassName("caret");
-    let i;
-    //console.log(toggler); 
-    for (i = 0; i < toggler.length; i++) {
-    toggler[i].addEventListener("click", function() {
-      this.parentElement.querySelector(".nested").classList.toggle("active");
-      this.classList.toggle("caret-down");
-    });
-  }
-  }
-  

@@ -99,11 +99,11 @@
       <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
         <!-- Bootstrap Treeview for component card -->
         <ul id="treeview">
-        <li><span class="caret d-flex"><div class="mx-1 caret_IP">IP</div></span>
+        <!-- <li><span class="caret d-flex"><div class="mx-1 caret_IP">IP</div></span>
           <ul class="nested component_list">
             <!-- Append tree components here -->
-          </ul>
-        </li>
+          <!-- </ul>
+        </li> --> 
         </ul>
   
       <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
@@ -160,8 +160,8 @@
       let groupDataSet = addrGroupMap.get(IP).componentIDGroup; // reference addrGroupMap componentIDGroup object
       let groupDataMap = addrGroupMap.get(IP).componentIDMap; // reference addrGroupMap componentIDMap object
       parseServerEvent(arg.id,arg.data,groupDataSet,groupDataMap);
-      
       updateTreeData(IP,groupDataSet,groupDataMap);
+      
       
       toggleTree();
 

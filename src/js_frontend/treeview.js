@@ -54,6 +54,7 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
                 let componentListElement = items.getElementsByClassName("component_list");
                 let componentDivElement = items.getElementsByClassName("component_div");
                 let componentLiElement = items.getElementsByClassName("component_li");
+                let entityNameList = items.querySelectorAll("div[entityName]");
                 for (const list of componentLiElement) {
                     const listText = list.textContent;
                     componentNameGroupTreeview.add(listText);
@@ -78,18 +79,27 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
                         let li2 = document.createElement("li");
                         li2.classList.add(iterator[0].split('-')[0],"component_li");
                         li2.textContent = iterator[0]; 
-                        let dataElement = document.createElement("div")
+                        let dataElement = document.createElement("div");
                         dataElement.textContent = data;
+                        dataElement.setAttribute("entityName",iterator[0]);
                         div1.appendChild(dataElement);
                         div1.prepend(li2);
                         componentListElement[0].appendChild(div1);
+                        }
                     } 
+                   
+                for (const iterator of entityNameList) {
+                            //console.log("iterator.entityName",iterator.getAttribute('entityName'));
+                            //console.log("groupDataMap.get(iterator.entityName",groupDataMap.get(iterator.getAttribute('entityName')))
+                            const data = groupDataMap.get(iterator.getAttribute('entityName'));
+                            iterator.textContent = JSON.stringify(data);
+                        }
                 }
                   }
                 } 
             }
         
-        };
+        
 
        
 
@@ -106,7 +116,9 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     *span1.caret.d-flex
         *div1.mx-1.caret_IP  (IP)
     *ul1.nested.component_list
-        *li2.`element_text.split('-')[0];`
+        *div2.
+            li.`element_text.split('-')[0];`
+            div3.data
         *...
         *...
         *...
@@ -131,14 +143,14 @@ function createTreeTemplate(IP,groupDataSet,groupDataMap,callback){
     ul1.className = "nested component_list";
     let ul_list = fragment.querySelector("div").appendChild(ul1);
     //console.log(ul_list);
-    componentNameGroup.forEach(element => {
-          let element_text = Object.keys(element)[0];
-          let li2 = document.createElement("li");
-          li2.classList.add(element_text.split('-')[0],"component_li");
-          li2.textContent = element_text;
-          ul_list.appendChild(li2); 
-          //componentIDGroupTreeview.add(element); //BUG!
-          }); 
+    // componentNameGroup.forEach(element => {
+    //       let element_text = Object.keys(element)[0];
+    //       let div2 = document.createElement("");
+    //       div2.classList.add(element_text.split('-')[0],"component_li");
+    //       div2.textContent = element_text;
+    //       ul_list.appendChild(div2); 
+    //       //componentIDGroupTreeview.add(element); //BUG!
+    //       }); 
     callback(fragment);
 
 }

@@ -148,10 +148,10 @@
     socket.emit("syncAddrGroup",[...addrGroup.values()]);
 
     socket.on("state", (arg) => {
-      console.log(arg); 
+      //console.log(arg); 
       const state = JSON.parse(arg.data);
       const IP = arg.id;
-      console.log(`From: ${IP}  data: ${state}`); 
+      //console.log(`From: ${IP}  data: ${state}`); 
       if (!addrGroupMap.has(IP)) {
         let componentIDGroup = new Set();
         let componentIDMap = new Map();
@@ -164,21 +164,10 @@
       updateTreeData(IP,groupDataSet,groupDataMap);
       
       toggleTree();
-     // createTreeTemplate(IP,(fragment) => {
-     //     
-     //     let node = document.getElementById("treeview");
-     //     //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
-     //     let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
-     //     while(node.firstElementChild) {
-     //       node.removeChild(node.firstElementChild)
-     //     }
-     //     node.appendChild(fragment);
-     //     toggleTree();
-     // });
+
       
     });
-      //createTreeElement(addrGroupMap);
-      //operateTreedata(addrGroupMap);
+
 
     })()
     

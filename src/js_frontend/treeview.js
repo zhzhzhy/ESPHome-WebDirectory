@@ -10,7 +10,7 @@ function parseServerEvent(IP,data,groupDataSet,groupDataMap,callback) {
     let cId = dataObj.id; //component object id(use this to determine unique id)
     let cIdObj = {};
     cIdObj[cId] = {"live":"1","ttl":"30"};//obj to describe attr of cId
-    console.log(cIdObj);
+    //console.log(cIdObj);
     let cValue = dataObj.value; // not necessary
     let cName = dataObj.name; // not necessary
 
@@ -25,9 +25,9 @@ function parseServerEvent(IP,data,groupDataSet,groupDataMap,callback) {
 
     groupDataMap.set(cId,dataObj);
     
-    console.log(dataObj.id);  //comment later!
-    console.log("componentIDGroup: ",groupDataSet); //comment later!
-    console.log("componentIDMap",groupDataMap); //comment later!
+    //console.log(dataObj.id);  //comment later!
+    //console.log("componentIDGroup: ",groupDataSet); //comment later!
+    //console.log("componentIDMap",groupDataMap); //comment later!
     console.log("addrGroupMap",addrGroupMap);
     
 }
@@ -37,19 +37,28 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
     let ObjSet = new Set();
     for (const element of groupDataSet) {
-            ObjSet.add(Object.keys(element));
+            ObjSet.add(Object.keys(element)[0]);
        }
-    for (const items of TreeviewNodeLists) {
-       const newItems = items?.id.replace(/_/g,"\.");
-       
-       if (!ObjSet.has(newItems)) {
-        createTreeTemplate(IP,(fragment) => {
+    console.log("ObjSet",ObjSet);
+    console.log("TreeviewNodeLists",TreeviewNodeLists);
+    if(TreeviewNodeLists.length == 0){
+        setTimeout(() => {
+            createTreeTemplate(IP,groupDataSet,groupDataMap,(fragment) => {
             node.appendChild(fragment);
-        });
+            console.log(fragment);
+            })
+        }, 5000);
     }
-       //console.log("ip==============:",items.id);
-    }
+    else{
+        for (const items of TreeviewNodeLists) {
+            const newItems = items?.id.replace(/_/g,"\.");
+            console.log("newItems",newItems);
+            }
+        };
 }
+       
+
+
 
 /*
 *Create tree template HTML which is maped like data--id => data
@@ -69,7 +78,7 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     
 *------
 */
-function createTreeTemplate(IP,callback){
+function createTreeTemplate(IP,groupDataSet,groupDataMap,callback){
     //let node = document.querySelector("#treeview");
     //const tree = new tree_structure(IP,componentNameGroup,componentDataMap);
     const fragment = new DocumentFragment();
@@ -144,7 +153,7 @@ function createTreeElement(group_map,callback) {
 function toggleTree() {
     let toggler = document.getElementsByClassName("caret");
     let i;
-    console.log(toggler); 
+    //console.log(toggler); 
     for (i = 0; i < toggler.length; i++) {
     toggler[i].addEventListener("click", function() {
       this.parentElement.querySelector(".nested").classList.toggle("active");

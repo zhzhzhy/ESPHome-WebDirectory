@@ -3,7 +3,7 @@
 *Parse socket.io eventsource data to Set & Map for template usage
 *Set:componentIDGroup(Set include data--id) & Map:componentIDMap(Map like: data--id => data--object)
 */
-function parseServerEvent(IP,data,callback) {
+function parseServerEvent(IP,data,groupDataSet,groupDataMap,callback) {
     // componentIDGroup -> Object.Set is define in Object.name of addrGroupMap.get(IP)
     // componentIDMap -> Object.Map is define in Object.name of addrGroupMap.get(IP)
     let dataObj = JSON.parse(data); //component data object(use this as template raw data)
@@ -13,13 +13,8 @@ function parseServerEvent(IP,data,callback) {
     console.log(cIdObj);
     let cValue = dataObj.value; // not necessary
     let cName = dataObj.name; // not necessary
-    if (!addrGroupMap.has(IP)) {
-        let componentIDGroup = new Set();
-        let componentIDMap = new Map();
-        addrGroupMap.set(IP,{componentIDGroup,componentIDMap});
-    }
-    let groupDataSet = addrGroupMap.get(IP).componentIDGroup;
-    let groupDataMap = addrGroupMap.get(IP).componentIDMap;
+
+
     groupDataSet.forEach((element) => {
         if (Object.keys(element).includes(cId)) {
             groupDataSet.delete(element);
@@ -27,25 +22,31 @@ function parseServerEvent(IP,data,callback) {
     });
 
         groupDataSet.add(cIdObj);
-   // if (!groupDataSet.has(cId)) {
-   //     
-   //     groupDataSet.add(cId);
-   // }
+
     groupDataMap.set(cId,dataObj);
     
     console.log(dataObj.id);  //comment later!
     console.log("componentIDGroup: ",groupDataSet); //comment later!
     console.log("componentIDMap",groupDataMap); //comment later!
-    console.log(addrGroupMap);
-    callback(groupDataSet,groupDataMap);
+    console.log("addrGroupMap",addrGroupMap);
+    
 }
 
-function updateTreeData(callback) {
+function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     let node = document.getElementById("treeview");
-    //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
     let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
+    let ObjSet = new Set();
+    for (const element of groupDataSet) {
+            ObjSet.add(Object.keys(element));
+       }
     for (const items of TreeviewNodeLists) {
-       items.id
+       const newItems = items?.id.replace(/_/g,"\.");
+       
+       if (!ObjSet.has(newItems)) {
+        createTreeTemplate(IP,(fragment) => {
+            node.appendChild(fragment);
+        });
+    }
        //console.log("ip==============:",items.id);
     }
 }
@@ -68,10 +69,11 @@ function updateTreeData(callback) {
     
 *------
 */
-function createTreeTemplate(IP,componentNameGroup,componentDataMap,callback){
+function createTreeTemplate(IP,callback){
     //let node = document.querySelector("#treeview");
     //const tree = new tree_structure(IP,componentNameGroup,componentDataMap);
     const fragment = new DocumentFragment();
+    componentNameGroup = groupDataSet;
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g,"_");
     div0.className = "TreeviewIPList";

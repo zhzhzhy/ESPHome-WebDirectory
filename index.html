@@ -141,8 +141,8 @@
   <script>
     let addrGroup = new Set();
     let addrGroupMap = new Map();
-    let componentIDMap = new Map();
-    let componentIDGroupTreeview = new Set();
+    //let componentIDMap = new Map();
+    //let componentIDGroupTreeview = new Set();
     const socket = io();
     (() => {
     socket.emit("syncAddrGroup",[...addrGroup.values()]);
@@ -152,23 +152,33 @@
       const state = JSON.parse(arg.data);
       const IP = arg.id;
       console.log(`From: ${IP}  data: ${state}`); 
-      parseServerEvent(arg.id,arg.data,(groupDataSet,groupDataMap) => {
-        console.log(addrGroupMap);
-        createTreeTemplate(IP,groupDataSet,"",(fragment) => {
-          updateTreeData();
-          let node = document.getElementById("treeview");
-          //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
-          let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
-          while(node.firstElementChild) {
-            node.removeChild(node.firstElementChild)
-          }
-          node.appendChild(fragment);
-          toggleTree();
-      });
-        //createTreeElement(addrGroupMap);
-        //operateTreedata(addrGroupMap);
-      });
-      });
+      if (!addrGroupMap.has(IP)) {
+        let componentIDGroup = new Set();
+        let componentIDMap = new Map();
+        addrGroupMap.set(IP,{componentIDGroup,componentIDMap});
+    }
+      let groupDataSet = addrGroupMap.get(IP).componentIDGroup; // reference addrGroupMap componentIDGroup object
+      let groupDataMap = addrGroupMap.get(IP).componentIDMap; // reference addrGroupMap componentIDMap object
+      parseServerEvent(arg.id,arg.data,groupDataSet,groupDataMap);
+      
+      updateTreeData(IP,groupDataSet,groupDataMap);
+      
+      toggleTree();
+     // createTreeTemplate(IP,(fragment) => {
+     //     
+     //     let node = document.getElementById("treeview");
+     //     //console.log("id test: ",node.querySelectorAll(`div[class=TreeviewIPList]`));
+     //     let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
+     //     while(node.firstElementChild) {
+     //       node.removeChild(node.firstElementChild)
+     //     }
+     //     node.appendChild(fragment);
+     //     toggleTree();
+     // });
+      
+    });
+      //createTreeElement(addrGroupMap);
+      //operateTreedata(addrGroupMap);
 
     })()
     

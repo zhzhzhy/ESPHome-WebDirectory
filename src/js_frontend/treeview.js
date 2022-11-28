@@ -42,10 +42,11 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
     console.log("ObjSet",ObjSet);
     console.log("TreeviewNodeLists",TreeviewNodeLists);
     if(TreeviewNodeLists.length == 0){
+        console.log(TreeviewNodeLists.length);
         setTimeout(() => {
             createTreeTemplate(IP,groupDataSet,groupDataMap,(fragment) => {
             node.appendChild(fragment);
-            console.log(fragment);
+            //console.log(fragment);
             })
         }, 5000);
     }

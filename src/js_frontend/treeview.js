@@ -59,15 +59,7 @@ function updateTreeData(IP,groupDataSet,groupDataMap,callback) {
                     const listText = list.textContent;
                     componentNameGroupTreeview.add(listText);
                     }
-                // Render component_list
-                // for (const iterator of ObjStringSet) {
-                //     if (!componentNameGroupTreeview.has(iterator)) {
-                //         let li2 = document.createElement("li");
-                //         li2.classList.add(iterator.split('-')[0],"component_li");
-                //         li2.textContent = iterator;
-                //         componentListElement[0].appendChild(li2);
-                //     }
-                //     }    
+
                 //Render component data
                 for (const iterator of groupDataMap.entries()) {
                     const selector = iterator[0];

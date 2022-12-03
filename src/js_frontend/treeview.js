@@ -48,7 +48,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
     else {
         for (const items of TreeviewNodeLists) {
             const newItemsId = items?.id.replace(/_/g, "\.");
-            //console.log("items",items);
             // <div id="10_0_0_190" class="TreeviewIPList"><span class="caret d-flex"><div class="mx-1 caret_IP">10.0.0.190</div></span><ul class="nested component_list"><li class="binary_sensor">binary_sensor-pir_sensor</li></ul></div>
             if (newItemsId == IP) {
                 let componentListElement = items.getElementsByClassName("component_list");
@@ -63,7 +62,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 //Render component data
                 for (const iterator of groupDataMap.entries()) {
                     const selector = iterator[0];
-                    //console.log(selector,componentNameGroupTreeview,componentNameGroupTreeview.has(selector));
                     const data = JSON.stringify(iterator[1]);
                     if (!componentNameGroupTreeview.has(selector)) {
                         let div1 = document.createElement("div");
@@ -86,8 +84,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 }
 
                 for (const iterator of entityNameList) {
-                    //console.log("iterator.entityName",iterator.getAttribute('entityName'));
-                    //console.log("groupDataMap.get(iterator.entityName",groupDataMap.get(iterator.getAttribute('entityName')))
+
                     const data = groupDataMap.get(iterator.getAttribute('entityName'));
                     iterator.textContent = JSON.stringify(data);
                 }
@@ -139,15 +136,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
     let ul_list = fragment.querySelector("div").appendChild(ul1);
-    //console.log(ul_list);
-    // componentNameGroup.forEach(element => {
-    //       let element_text = Object.keys(element)[0];
-    //       let div2 = document.createElement("");
-    //       div2.classList.add(element_text.split('-')[0],"component_li");
-    //       div2.textContent = element_text;
-    //       ul_list.appendChild(div2); 
-    //       //componentIDGroupTreeview.add(element); //BUG!
-    //       }); 
+
     callback(fragment);
 
 }
@@ -157,9 +146,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 */
 function toggleTree() {
     let toggler = document.getElementsByClassName("TreeviewIPList");
-    let i;
-    //console.log(toggler); 
-    for (i = 0; i < toggler.length; i++) {
+    for (let i = 0; i < toggler.length; i++) {
         toggler[i].firstElementChild.addEventListener("click", function () {
             console.log("this", this.parentElement.getElementsByClassName("nested"));
             this.parentElement.getElementsByClassName("nested")[0].classList.toggle("active");

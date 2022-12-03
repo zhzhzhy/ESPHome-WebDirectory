@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <!-- meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ESPHome-WebDirectory</title>
-    <link href="src/asset/bootstrap-5.2.2-dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="src/asset/jquery-3.6.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
-    
-    
-   <!-- <link rel="stylesheet" href="./style.css"> -->
-  <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
-  </head>
-  <body>
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <div class="container">
-            <a href="#" class="navbar-brand">ESPHome Web Controller</a>
-  
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navmenu"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navmenu">
-              <ul class="navbar-nav ms-auto">
-                  <!--margin start = margin left-->
-                  <li class="nav-item">
-                      <div class="nav-link">manage devices</div>
-                  </li>
-                  <li class="nav-item">
-                      <div class="nav-link">event log</div>
-                  </li>
-                  <li class="nav-item">
-                      <div class="nav-link">device_list</div>
-                  </li>
-              </ul>
-          </div>
-        </div>
-    </nav>
-    <section>
-      <div class="container">
-      <h2>
-        <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
-      </h2> 
-      <label for="ipAddress">Enter IP address for ESPHome component:</label>
-    <div class="input_box d-flex flex-column justify-content-start" style="width: fit-content;">
 
-    <div class="d-flex gap-3 mb-3" id="IP_input_box">
-      <div class="input-group mt-3">
-        <input type="text" class="form-control" id="ipAddress" placeholder="ESPHome component IP address" aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
-        <button class="btn btn-outline-secondary btn-primary" type="button" id="basic-Commit-IP">Commit</span>
+<head>
+  <meta charset="UTF-8">
+  <!-- meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ESPHome-WebDirectory</title>
+  <link href="src/asset/bootstrap-5.2.2-dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="src/asset/jquery-3.6.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+
+
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  <!--  <link rel="icon" href="./favicon.ico" type="image/x-icon">   -->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+    <div class="container">
+      <a href="#" class="navbar-brand">ESPHome Web Controller</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <!--margin start = margin left-->
+          <li class="nav-item">
+            <div class="nav-link">manage devices</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">event log</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">device_list</div>
+          </li>
+        </ul>
       </div>
     </div>
-    </div>
-    
+  </nav>
+  <section>
+    <div class="container">
+      <h2>
+        <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
+      </h2>
+      <label for="ipAddress">Enter IP address for ESPHome component:</label>
+      <div class="input_box d-flex flex-column justify-content-start" style="width: fit-content;">
+
+        <div class="d-flex gap-3 mb-3" id="IP_input_box">
+          <div class="input-group mt-3">
+            <input type="text" class="form-control" id="ipAddress" placeholder="ESPHome component IP address"
+              aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
+            <button class="btn btn-outline-secondary btn-primary" type="button" id="basic-Commit-IP">Commit</span>
+          </div>
+        </div>
+      </div>
+
   </section>
 
 
@@ -66,77 +64,81 @@
     <div class="container">
       <ul class="nav nav-tabs mb-3" role="tablist">
         <li class="nav-item" role="presentation" tabindex="0">
-          <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Devices_Card" type="button" role="tab" aria-controls="Devices_Card" aria-selected="true">Devices Card</a>
+          <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Devices_Card" type="button" role="tab"
+            aria-controls="Devices_Card" aria-selected="true">Devices Card</a>
         </li>
         <li class="nav-item" role="presentation" tabindex="0">
-          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Devices_List" type="button" role="tab" aria-controls="Devices_List" aria-selected="false">Devices list</a>
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Devices_List" type="button" role="tab"
+            aria-controls="Devices_List" aria-selected="false">Devices list</a>
         </li>
         <li class="nav-item" role="presentation" tabindex="0">
-        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Logcat" type="button" role="tab" aria-controls="Logcat" aria-selected="false">Logcat</a>
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Logcat" type="button" role="tab"
+            aria-controls="Logcat" aria-selected="false">Logcat</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" data-toggle="tab">Settings</a>
         </li>
       </ul>
-    
 
-    <div class="tab-content">
 
-      <div id="Devices_Card" class="tab-pane fade show active" role="tabpanel" aria-labelledby="Devices_Card" tabindex="-1">
-        <div class="container col" >
-          <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list"></div>
-          <div class="components_list list-group col-3 mt-3">
-            <h2>
-            <ul class="component row"></ul>
-            </h2>
+      <div class="tab-content">
+
+        <div id="Devices_Card" class="tab-pane fade show active" role="tabpanel" aria-labelledby="Devices_Card"
+          tabindex="-1">
+          <div class="container col">
+            <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list"></div>
+            <div class="components_list list-group col-3 mt-3">
+              <h2>
+                <ul class="component row"></ul>
+              </h2>
+            </div>
+
+
           </div>
-    
-    
-      </div>
-  
-      </div>
-        
-      <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
-        <!-- Bootstrap Treeview for component card -->
-        <ul id="treeview">
-        <!-- <li><span class="caret d-flex"><div class="mx-1 caret_IP">IP</div></span>
+
+        </div>
+
+        <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
+          <!-- Bootstrap Treeview for component card -->
+          <ul id="treeview">
+            <!-- <li><span class="caret d-flex"><div class="mx-1 caret_IP">IP</div></span>
           <ul class="nested component_list">
             <!-- Append tree components here -->
-          <!-- </ul>
-        </li> --> 
-        </ul>
-  
-      <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
-          Text3
+            <!-- </ul>
+        </li> -->
+          </ul>
+
+          <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
+            Text3
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
   </section>
 
 
   <section>
-    <div class="container col" >
+    <div class="container col">
       <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list">
-     
-    </div>
+
+      </div>
       <div class="components_list list-group col-3 mt-3">
         <h2>
-        <ul class="component row">
-        </ul>
-      </h2>
+          <ul class="component row">
+          </ul>
+        </h2>
+      </div>
+
+
+    </div>
     </div>
 
-
-  </div>
-</div>
-
-    </div> 
+    </div>
   </section>
 
 
   <script src="src/js_frontend/treeview.js"></script>
   <script src="src/asset/socket.io/socket.io.min.js"></script>
-	<script type="text/javascript" src="src/js_frontend/script.js"></script>
+  <script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
   <script>
     let addrGroup = new Set();
@@ -145,53 +147,58 @@
     //let componentIDGroupTreeview = new Set();
     const socket = io();
     (() => {
-    socket.emit("syncAddrGroup",[...addrGroup.values()]);
+      socket.emit("syncAddrGroup", [...addrGroup.values()]);
 
-    socket.on("state", (arg) => {
-      //console.log(arg); 
-      const state = JSON.parse(arg.data);
-      const IP = arg.id;
-      //console.log(`From: ${IP}  data: ${state}`); 
-      if (!addrGroupMap.has(IP)) {
-        let componentIDGroup = new Set();
-        let componentIDMap = new Map();
-        addrGroupMap.set(IP,{componentIDGroup,componentIDMap});
-    }
-      let groupDataSet = addrGroupMap.get(IP).componentIDGroup; // reference addrGroupMap componentIDGroup object
-      let groupDataMap = addrGroupMap.get(IP).componentIDMap; // reference addrGroupMap componentIDMap object
-      parseServerEvent(arg.id,arg.data,groupDataSet,groupDataMap);
-      updateTreeData(IP,groupDataSet,groupDataMap);
-      
-      
-      toggleTree();
+      socket.on("state", (arg) => {
+        //console.log(arg); 
+        const state = JSON.parse(arg.data);
+        const IP = arg.id;
+        //console.log(`From: ${IP}  data: ${state}`); 
+        if (!addrGroupMap.has(IP)) {
+          let componentIDGroup = new Set();
+          let componentIDMap = new Map();
+          addrGroupMap.set(IP, { componentIDGroup, componentIDMap });
+        }
+        let groupDataSet = addrGroupMap.get(IP).componentIDGroup; // reference addrGroupMap componentIDGroup object
+        let groupDataMap = addrGroupMap.get(IP).componentIDMap; // reference addrGroupMap componentIDMap object
+        parseServerEvent(arg.id, arg.data, groupDataSet, groupDataMap);
+        updateTreeData(IP, groupDataSet, groupDataMap);
 
-      
-    });
+        toggleTree();
+
+
+
+      });
+
+      // setInterval(() => {
+      //   toggleTree();
+      // }, 1000);
 
 
     })()
-    
+
   </script>
 
   <script>
 
-    $(document).ready(() =>{
-    handleInputIP(
-      (data) => {
-      maintainAddrGroup(data,"add",() => {
-        addComponentCard(data,$("#device_list"));
-        socket.emit("syncAddrGroup",[...addrGroup.values()]); 
-            }
-        )}
+    $(document).ready(() => {
+      handleInputIP(
+        (data) => {
+          maintainAddrGroup(data, "add", () => {
+            addComponentCard(data, $("#device_list"));
+            socket.emit("syncAddrGroup", [...addrGroup.values()]);
+          }
+          )
+        }
       );
-      
+
     })
-    
+
 
   </script>
 
   <script>
-   
+
   </script>
 
   <script src="src/asset/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
@@ -221,5 +228,6 @@
 
 
 
-  </body>
+</body>
+
 </html>

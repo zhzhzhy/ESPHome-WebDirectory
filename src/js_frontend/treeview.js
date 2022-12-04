@@ -78,23 +78,25 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         divFormCheck.classList.add(iterator[0].split('-')[0], "component_div", "form-check");
                         let input1 = document.createElement("input");
                         input1.classList.add("form-check-input");
-                        input1.setAttribute("type","checkbox");
+                        input1.setAttribute("type", "checkbox");
                         let label1 = document.createElement("label");
-                        label1.classList.add(iterator[0].split('-')[0], "component_li","form-check-label");
+                        label1.classList.add(iterator[0].split('-')[0], "component_li", "form-check-label");
                         label1.textContent = iterator[0];
                         let dataElement = document.createElement("div");
                         dataElement.textContent = data;
                         dataElement.setAttribute("entityName", iterator[0]);
                         dataElement.classList.add("nested", "dataElement");
                         label1.addEventListener("click", function () {
-                            this.parentElement.getElementsByClassName("nested")[0].classList.toggle("active");
-                            this.classList.toggle("caret-down");
+                            let thisP = this.parentElement;
+                            let thisPP = this.parentElement.parentElement;
+                            thisPP.nextElementSibling.classList.toggle("active");
+                            thisP.previousElementSibling.classList.toggle("caret-down");
                         }
                         );
-                        divFormCheck.append(input1,label1);
-                        divFlex.append(caretDiv,divFormCheck);
-                        
-                        componentListElement[0].append(divFlex,dataElement);
+                        divFormCheck.append(input1, label1);
+                        divFlex.append(caretDiv, divFormCheck);
+
+                        componentListElement[0].append(divFlex, dataElement);
                     }
                 }
 
@@ -176,16 +178,11 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 function toggleTree() {
     let t = document.getElementsByClassName("TreeviewIPList");
     for (const toggler of t) {
-        toggler.querySelector("label.form-check-label").addEventListener("click", () => {
-            console.log("this1:", this);
+        toggler.querySelector("label.form-check-label").addEventListener("click", function () {
             toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
             toggler.getElementsByClassName("nested")[0].classList.toggle("active");
         })
-        // toggler.addEventListener("click", () => {
-        //     console.log("this2:",this);
-        //     this.getElementsByClassName("nested")[0].classList.toggle("active");
-        // }
-        // );
+
     }
 }
 

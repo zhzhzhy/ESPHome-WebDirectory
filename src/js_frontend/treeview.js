@@ -70,23 +70,31 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                     const selector = iterator[0];
                     const data = JSON.stringify(iterator[1]);
                     if (!componentNameGroupTreeview.has(selector)) {
-                        let div1 = document.createElement("div");
-                        div1.classList.add(iterator[0].split('-')[0], "component_div");
-                        let li2 = document.createElement("li");
-                        li2.classList.add(iterator[0].split('-')[0], "component_li", "caret");
-                        li2.textContent = iterator[0];
+                        let caretDiv = document.createElement("div");
+                        caretDiv.classList.add("caret");
+                        let divFlex = document.createElement("div");
+                        divFlex.classList.add("d-flex");
+                        let divFormCheck = document.createElement("div");
+                        divFormCheck.classList.add(iterator[0].split('-')[0], "component_div", "form-check");
+                        let input1 = document.createElement("input");
+                        input1.classList.add("form-check-input");
+                        input1.setAttribute("type","checkbox");
+                        let label1 = document.createElement("label");
+                        label1.classList.add(iterator[0].split('-')[0], "component_li","form-check-label");
+                        label1.textContent = iterator[0];
                         let dataElement = document.createElement("div");
                         dataElement.textContent = data;
                         dataElement.setAttribute("entityName", iterator[0]);
                         dataElement.classList.add("nested", "dataElement");
-                        li2.addEventListener("click", function () {
+                        label1.addEventListener("click", function () {
                             this.parentElement.getElementsByClassName("nested")[0].classList.toggle("active");
                             this.classList.toggle("caret-down");
                         }
                         );
-                        div1.appendChild(dataElement);
-                        div1.prepend(li2);
-                        componentListElement[0].appendChild(div1);
+                        divFormCheck.append(input1,label1);
+                        divFlex.append(caretDiv,divFormCheck);
+                        
+                        componentListElement[0].append(divFlex,dataElement);
                     }
                 }
 
@@ -137,7 +145,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     let caretDiv = document.createElement("div");
     caretDiv.classList.add("caret");
     let input1 = document.createElement("input");
-    input1.className = "d-flex form-check-input";
+    input1.className = "form-check-input";
     input1.setAttribute("type", "checkbox");
     input1.id = IP.replace(/\./g, "_") + "-" + "input1";
     let div1 = document.createElement("div");
@@ -146,17 +154,17 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     div1.classList.add("form-check");
     label1 = document.createElement("label");
     label1.classList.add("form-check-label");
-    label1.setAttribute("for",input1.id);
+    //label1.setAttribute("for",input1.id);
     label1.textContent = IP;
-    div1.append(input1,label1);
+    div1.append(input1, label1);
     let divFlex = document.createElement("div");
     divFlex.classList.add("d-flex");
-    divFlex.append(caretDiv,div1);
-    
+    divFlex.append(caretDiv, div1);
+
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
-    div0.append(divFlex,ul1);
-    fragment.appendChild(div0); 
+    div0.append(divFlex, ul1);
+    fragment.appendChild(div0);
 
     callback(fragment);
 
@@ -168,11 +176,11 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 function toggleTree() {
     let t = document.getElementsByClassName("TreeviewIPList");
     for (const toggler of t) {
-        toggler.querySelector("label.form-check-label").addEventListener("click",() => {
-            console.log("this1:",this);
+        toggler.querySelector("label.form-check-label").addEventListener("click", () => {
+            console.log("this1:", this);
             toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
             toggler.getElementsByClassName("nested")[0].classList.toggle("active");
-        }) 
+        })
         // toggler.addEventListener("click", () => {
         //     console.log("this2:",this);
         //     this.getElementsByClassName("nested")[0].classList.toggle("active");

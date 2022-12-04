@@ -32,14 +32,19 @@ function parseServerEvent(IP, data, groupDataSet, groupDataMap, callback) {
 
 function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
     let node = document.getElementById("treeview");
-    let TreeviewNodeLists = node.querySelectorAll(`div[class=TreeviewIPList]`);
+    let TreeviewNodeLists = node.querySelectorAll(`div[class*=TreeviewIPList]`);
+    let TreeviewNodeListsIPSet = new Set();
+    for (const items of TreeviewNodeLists) {
+        const newItemsId = items?.id.replace(/_/g, "\.");
+        TreeviewNodeListsIPSet.add(newItemsId);
+    }
     let ObjStringSet = new Set();
     let componentNameGroupTreeview = new Set();
     for (const element of groupDataSet) {
         ObjStringSet.add(Object.keys(element)[0]);
     }
 
-    if (TreeviewNodeLists.length == 0) {
+    if (!TreeviewNodeListsIPSet.has(IP)) {
         createTreeTemplate(IP, groupDataSet, groupDataMap, (fragment) => {
             node.appendChild(fragment);
         })
@@ -76,7 +81,8 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         li2.addEventListener("click", function () {
                             this.parentElement.getElementsByClassName("nested")[0].classList.toggle("active");
                             this.classList.toggle("caret-down");
-                        });
+                        }
+                        );
                         div1.appendChild(dataElement);
                         div1.prepend(li2);
                         componentListElement[0].appendChild(div1);
@@ -107,7 +113,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 *Treeview structure:
 
 *div0.TreeviewIPList
-    *span1.caret.d-flex
+    *input1.caret.d-flex
         *div1.mx-1.caret_IP  (IP)
     *ul1.nested.component_list
         *div2.
@@ -126,16 +132,25 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     componentNameGroup = groupDataSet;
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g, "_");
-    div0.className = "TreeviewIPList";
-    let span1 = document.createElement("span");
-    span1.className = "caret d-flex";
+    div0.classList.add("TreeviewIPList","caret","d-flex");
+    let input1 = document.createElement("input");
+    input1.className = "d-flex form-check-input";
+    input1.setAttribute("type", "checkbox");
+    input1.id = IP.replace(/\./g, "_") + "-" + "input1";
     let div1 = document.createElement("div");
     div1.className = "mx-1 caret_IP";
-    div1.textContent = IP;
-    fragment.appendChild(div0).appendChild(span1).appendChild(div1);
+    //div1.textContent = IP;
+    div1.classList.add("form-check");
+    
+    label1 = document.createElement("label");
+    label1.classList.add("form-check-label");
+    label1.setAttribute("for",input1.id);
+    label1.textContent = IP;
+    div1.append(input1,label1);
+    fragment.appendChild(div0).appendChild(div1);
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
-    let ul_list = fragment.querySelector("div").appendChild(ul1);
+    let ul_list = fragment.querySelector(".TreeviewIPList").appendChild(ul1);
 
     callback(fragment);
 
@@ -146,13 +161,13 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 */
 function toggleTree() {
     let toggler = document.getElementsByClassName("TreeviewIPList");
-    for (let i = 0; i < toggler.length; i++) {
-        toggler[i].firstElementChild.addEventListener("click", function () {
-            console.log("this", this.parentElement.getElementsByClassName("nested"));
-            this.parentElement.getElementsByClassName("nested")[0].classList.toggle("active");
+    for (let i = 0; i < toggler.length-1; i++) {
+        toggler[i].addEventListener("click", function () {
+            //console.log("this", this.parentElement.getElementsByClassName("nested"));
+            this.getElementsByClassName("nested")[0].classList.toggle("active");
             this.classList.toggle("caret-down");
-
-        });
+        }
+        );
     }
 }
 

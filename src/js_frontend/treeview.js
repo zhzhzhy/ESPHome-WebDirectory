@@ -75,7 +75,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         let divFlex = document.createElement("div");
                         divFlex.classList.add("d-flex");
                         let divFormCheck = document.createElement("div");
-                        divFormCheck.classList.add(iterator[0].split('-')[0], "component_div", "form-check");
+                        divFormCheck.classList.add(iterator[0].split('-')[0], "component_div", "form-check","mx-2");
                         let input1 = document.createElement("input");
                         input1.classList.add("form-check-input");
                         input1.setAttribute("type", "checkbox");
@@ -85,7 +85,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         let dataElement = document.createElement("div");
                         dataElement.textContent = data;
                         dataElement.setAttribute("entityName", iterator[0]);
-                        dataElement.classList.add("nested", "dataElement");
+                        dataElement.classList.add("nested", "dataElement","mx-3");
                         label1.addEventListener("click", function () {
                             let thisP = this.parentElement;
                             let thisPP = this.parentElement.parentElement;
@@ -151,7 +151,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     input1.setAttribute("type", "checkbox");
     input1.id = IP.replace(/\./g, "_") + "-" + "input1";
     let div1 = document.createElement("div");
-    div1.className = "mx-1 caret_IP";
+    div1.className = "mx-2 caret_IP";
     //div1.textContent = IP;
     div1.classList.add("form-check");
     label1 = document.createElement("label");
@@ -164,7 +164,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     divFlex.append(caretDiv, div1);
 
     let ul1 = document.createElement("ul");
-    ul1.className = "nested component_list";
+    ul1.className = "nested component_list mx-3";
     div0.append(divFlex, ul1);
     fragment.appendChild(div0);
 

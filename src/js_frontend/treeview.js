@@ -47,6 +47,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
     if (!TreeviewNodeListsIPSet.has(IP)) {
         createTreeTemplate(IP, groupDataSet, groupDataMap, (fragment) => {
             node.appendChild(fragment);
+            toggleTree();
         })
 
     }
@@ -132,7 +133,9 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     componentNameGroup = groupDataSet;
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g, "_");
-    div0.classList.add("TreeviewIPList","caret","d-flex");
+    div0.classList.add("TreeviewIPList");
+    let caretDiv = document.createElement("div");
+    caretDiv.classList.add("caret");
     let input1 = document.createElement("input");
     input1.className = "d-flex form-check-input";
     input1.setAttribute("type", "checkbox");
@@ -141,16 +144,19 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     div1.className = "mx-1 caret_IP";
     //div1.textContent = IP;
     div1.classList.add("form-check");
-    
     label1 = document.createElement("label");
     label1.classList.add("form-check-label");
     label1.setAttribute("for",input1.id);
     label1.textContent = IP;
     div1.append(input1,label1);
-    fragment.appendChild(div0).appendChild(div1);
+    let divFlex = document.createElement("div");
+    divFlex.classList.add("d-flex");
+    divFlex.append(caretDiv,div1);
+    
     let ul1 = document.createElement("ul");
     ul1.className = "nested component_list";
-    let ul_list = fragment.querySelector(".TreeviewIPList").appendChild(ul1);
+    div0.append(divFlex,ul1);
+    fragment.appendChild(div0); 
 
     callback(fragment);
 
@@ -160,14 +166,18 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 *Expand treeview list
 */
 function toggleTree() {
-    let toggler = document.getElementsByClassName("TreeviewIPList");
-    for (let i = 0; i < toggler.length-1; i++) {
-        toggler[i].addEventListener("click", function () {
-            //console.log("this", this.parentElement.getElementsByClassName("nested"));
-            this.getElementsByClassName("nested")[0].classList.toggle("active");
-            this.classList.toggle("caret-down");
-        }
-        );
+    let t = document.getElementsByClassName("TreeviewIPList");
+    for (const toggler of t) {
+        toggler.querySelector("label.form-check-label").addEventListener("click",() => {
+            console.log("this1:",this);
+            toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
+            toggler.getElementsByClassName("nested")[0].classList.toggle("active");
+        }) 
+        // toggler.addEventListener("click", () => {
+        //     console.log("this2:",this);
+        //     this.getElementsByClassName("nested")[0].classList.toggle("active");
+        // }
+        // );
     }
 }
 

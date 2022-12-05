@@ -47,7 +47,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
     if (!TreeviewNodeListsIPSet.has(IP)) {
         createTreeTemplate(IP, groupDataSet, groupDataMap, (fragment) => {
             node.appendChild(fragment);
-            toggleTree();
+            toggleTree(IP);
         })
 
     }
@@ -140,7 +140,7 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
     //let node = document.querySelector("#treeview");
     //const tree = new tree_structure(IP,componentNameGroup,componentDataMap);
     const fragment = new DocumentFragment();
-    componentNameGroup = groupDataSet;
+    //componentNameGroup = groupDataSet;
     let div0 = document.createElement("div");
     div0.id = IP.replace(/\./g, "_");
     div0.classList.add("TreeviewIPList");
@@ -175,14 +175,17 @@ function createTreeTemplate(IP, groupDataSet, groupDataMap, callback) {
 /*
 *Expand treeview list
 */
-function toggleTree() {
+function toggleTree(IP) {
     let t = document.getElementsByClassName("TreeviewIPList");
+    IPid = IP.replace(/\./g, "_");
     for (const toggler of t) {
+	if(toggler.id == IPid){
+
         toggler.querySelector("label.form-check-label").addEventListener("click", function () {
             toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
             toggler.getElementsByClassName("nested")[0].classList.toggle("active");
         })
-
+	}
     }
 }
 

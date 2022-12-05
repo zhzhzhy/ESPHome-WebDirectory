@@ -58,11 +58,13 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             if (newItemsId == IP) {
                 let componentListElement = items.getElementsByClassName("component_list");
                 let componentDivElement = items.getElementsByClassName("component_div");
-                let componentLiElement = items.getElementsByClassName("component_li");
+                let componentLabelElement = items.querySelectorAll("label[uniqueId]");
+                //console.log("componentLabelElement",componentLabelElement);
                 let entityNameList = items.querySelectorAll("div[entityName]");
-                for (const list of componentLiElement) {
-                    const listText = list.textContent;
-                    componentNameGroupTreeview.add(listText);
+                for (const list of componentLabelElement) {
+                    const NamedNodeMap = list.attributes;
+                    const listAttr = NamedNodeMap["uniqueId"].value;
+                    componentNameGroupTreeview.add(listAttr);
                 }
 
                 //Render component data
@@ -70,22 +72,28 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                     const selector = iterator[0];
                     const data = JSON.stringify(iterator[1]);
                     if (!componentNameGroupTreeview.has(selector)) {
+                        let entityClass = selector.slice(0, iterator[0].indexOf("-"));
+                        let entityName = selector.slice(selector.indexOf("-") + 1);
                         let caretDiv = document.createElement("div");
                         caretDiv.classList.add("caret");
                         let divFlex = document.createElement("div");
                         divFlex.classList.add("d-flex");
                         let divFormCheck = document.createElement("div");
-                        divFormCheck.classList.add(iterator[0].split('-')[0], "component_div", "form-check","mx-2");
+                        divFormCheck.classList.add(entityClass, "component_div", "form-check", "mx-2");
                         let input1 = document.createElement("input");
                         input1.classList.add("form-check-input");
                         input1.setAttribute("type", "checkbox");
                         let label1 = document.createElement("label");
-                        label1.classList.add(iterator[0].split('-')[0], "component_li", "form-check-label");
-                        label1.textContent = iterator[0];
+                        label1.classList.add(entityClass, "component_label", "form-check-label");
+                        label1.setAttribute("uniqueId", selector);
+                        label1.textContent = entityName;
+                        let badges = document.createElement("span");
+                        let badgesNew = getEntityClassBadge(badges, entityClass);
+                        label1.appendChild(badgesNew);
                         let dataElement = document.createElement("div");
                         dataElement.textContent = data;
-                        dataElement.setAttribute("entityName", iterator[0]);
-                        dataElement.classList.add("nested", "dataElement","mx-3");
+                        dataElement.setAttribute("entityName", selector);
+                        dataElement.classList.add("nested", "dataElement", "mx-3");
                         label1.addEventListener("click", function () {
                             let thisP = this.parentElement;
                             let thisPP = this.parentElement.parentElement;
@@ -107,6 +115,56 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 }
             }
         }
+    }
+    function getEntityClassBadge(badgesEle, entityClass) {
+        let badgesText, bgColor;
+        console.log(entityClass);
+        switch (entityClass) {
+            case "sensor":
+                badgesText = "Sensor";
+                bgColor = "bg-primary";
+                break;
+            case "binary_sensor":
+                badgesText = "Binary Sensor";
+                bgColor = "bg-info";
+                break;
+            case "switch":
+                badgesText = "Switch";
+                bgColor = "bg-success";
+                break;
+            case "light":
+                badgesText = "Light";
+                bgColor = "bg-warning";
+                break;
+            case "fan":
+                badgesText = "Fan";
+                bgColor = "bg-danger";
+                break;
+            case "cover":
+                badgesText = "Cover";
+                bgColor = "bg-secondary";
+                break;
+            case "select":
+                badgesText = "Select";
+                bgColor = "bg-secondary";
+                break;
+            case "button":
+                badgesText = "Button";
+                bgColor = "bg-secondary";
+                break;
+            case "number":
+                badgesText = "Number";
+                bgColor = "bg-secondary";
+                break;
+            default:
+                badgesText = "Unknown";
+                bgColor = "bg-secondary";
+                break;
+        }
+        badgesEle.classList.add("badge", bgColor,"mx-2");
+        badgesEle.textContent = badgesText;
+        return badgesEle;
+
     }
 }
 
@@ -179,13 +237,13 @@ function toggleTree(IP) {
     let t = document.getElementsByClassName("TreeviewIPList");
     IPid = IP.replace(/\./g, "_");
     for (const toggler of t) {
-	if(toggler.id == IPid){
+        if (toggler.id == IPid) {
 
-        toggler.querySelector("label.form-check-label").addEventListener("click", function () {
-            toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
-            toggler.getElementsByClassName("nested")[0].classList.toggle("active");
-        })
-	}
+            toggler.querySelector("label.form-check-label").addEventListener("click", function () {
+                toggler.getElementsByClassName("caret")[0].classList.toggle("caret-down");
+                toggler.getElementsByClassName("nested")[0].classList.toggle("active");
+            })
+        }
     }
 }
 

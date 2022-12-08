@@ -158,7 +158,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 
 
             for (const element of entityKeyValueMap) {
-                if (!treeviewEntityDataMap.has(element[0])) {
+                if (!treeviewEntityDataMap.has(element[0])) { //bug start here!
                     createEntityDatadiv(iterator, element[0], element[1]);
                 }
             }

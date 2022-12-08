@@ -59,7 +59,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 let componentListElement = items.getElementsByClassName("component_list");
                 let componentDivElement = items.getElementsByClassName("component_div");
                 let componentLabelElement = items.querySelectorAll("label[uniqueId]");
-                //console.log("componentLabelElement",componentLabelElement);
                 let entityNameList = items.querySelectorAll("div[entityName]");
                 for (const list of componentLabelElement) {
                     const NamedNodeMap = list.attributes;

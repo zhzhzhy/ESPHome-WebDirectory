@@ -59,14 +59,13 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 let componentListElement = items.getElementsByClassName("component_list");
                 let componentDivElement = items.getElementsByClassName("component_div");
                 let componentLabelElement = items.querySelectorAll("label[uniqueId]");
-                let entityNameList = items.querySelectorAll("div[entityName]");
                 for (const list of componentLabelElement) {
                     const NamedNodeMap = list.attributes;
                     const listAttr = NamedNodeMap["uniqueId"].value;
                     componentNameGroupTreeview.add(listAttr);
                 }
 
-                //Render component data
+                //Render component data（just add）
                 for (const iterator of groupDataMap.entries()) {
                     const selector = iterator[0];
                     const data = JSON.stringify(iterator[1]);
@@ -90,7 +89,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         let badgesNew = getEntityClassBadge(badges, entityClass);
                         label1.appendChild(badgesNew);
                         let dataElement = document.createElement("div");
-                        dataElement.textContent = data;
+                        //dataElement.textContent = data;
                         dataElement.setAttribute("entityName", selector);
                         dataElement.classList.add("nested", "dataElement", "mx-3");
                         label1.addEventListener("click", function () {
@@ -107,14 +106,95 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                     }
                 }
 
-                for (const iterator of entityNameList) {
 
-                    const data = groupDataMap.get(iterator.getAttribute('entityName'));
-                    iterator.textContent = JSON.stringify(data);
-                }
+                updateEntityData(items);
             }
         }
     }
+
+    //Update entities data
+    function updateEntityData(items) {
+        let entityNameList = items.querySelectorAll("div[entityName]");
+        function createEntityDatadiv(iterator, entityKey, entityValue) {
+            let div0 = document.createElement("div");
+            div0.classList.add("d-flex", "entityDataRegion");
+            let div1Key = document.createElement("div");
+            div1Key.classList.add("entityDataKey");
+            div1Key.textContent = entityKey + ":";
+            let div1Value = document.createElement("div");
+            div1Value.textContent = entityValue;
+            div1Value.classList.add("entityValueKey");
+            div0.append(div1Key, div1Value);
+            iterator.appendChild(div0);
+            //console.log("div0", div0);
+        }
+        for (const iterator of entityNameList) {
+
+            const originData = groupDataMap.get(iterator.getAttribute('entityName'));
+            let treeviewEntityDataNodeList = iterator.getElementsByClassName("entityDataRegion");
+            //console.log(treeviewEntityDataNodeList);
+
+            let treeviewEntityDataMap = new Map(); //Store treeview data map
+
+
+
+            let entityKeyValueMap = new Map(); //Store origin data map
+            for (const [entityKey, entityValue] of Object.entries(originData)) {
+                entityKeyValueMap.set(entityKey, entityValue);
+            }
+            // if (treeviewEntityDataNodeList.length == 0) {
+            //     const first = [...entityKeyValueMap][0];
+            //     const firstKey = first[0];
+            //     const firstValue = first[1];
+            //     createEntityDatadiv(iterator, firstKey, firstValue);
+            // }
+            for (const node of treeviewEntityDataNodeList) {
+                let nodeKey = node.getElementsByClassName("entityDataKey")[0];
+                let nodeValue = node.getElementsByClassName("entityValueKey")[0];
+                if (!treeviewEntityDataMap.has(nodeKey.textContent)) {
+                    treeviewEntityDataMap.set(nodeKey.textContent, nodeValue.textContent);
+                }
+            }
+
+
+            for (const element of entityKeyValueMap) {
+                if (!treeviewEntityDataMap.has(element[0])) {
+                    createEntityDatadiv(iterator, element[0], element[1]);
+                }
+            }
+            for (const node of treeviewEntityDataNodeList) {
+                let nodeKey = node.getElementsByClassName("entityDataKey");
+                let nodeValue = node.getElementsByClassName("entityValueKey");
+                if (entityKeyValueMap.has(nodeKey.textContent)) {
+                    nodeValue.textContent = entityKeyValueMap.get(nodeKey.textContent);
+                }
+
+
+
+            }
+            //let dataJSON =  JSON.stringify(originData);
+            //     for (const [entityKey,entityValue] of Object.entries(originData)) {
+
+            //         if (treeviewEntityDataMap.has(entityKey)) {
+
+
+            //         }
+            //         let div0 = document.createElement("div");
+            //         div0.classList.add("d-flex","entityKeyValue");
+            //         let div1Key = document.createElement("div");
+            //         div1Key.classList.add("entityDataKey");
+            //         div1Key.textContent = entityKey + ":";
+            //         let div1Value = document.createElement("div");
+            //         div1Value.textContent = entityValue;
+            //         div1Value.classList.add("entityValueKey");
+            //         div0.append(div1Key,div1Value);
+            //         iterator.appendChild(div0);
+            //         //console.log(entityValue);
+            //     }
+            //     //iterator.textContent = dataJSON;
+        }
+    }
+
     function getEntityClassBadge(badgesEle, entityClass) {
         let badgesText, bgColor;
         console.log(entityClass);
@@ -160,7 +240,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 bgColor = "bg-secondary";
                 break;
         }
-        badgesEle.classList.add("badge", bgColor,"mx-2");
+        badgesEle.classList.add("badge", bgColor, "mx-2");
         badgesEle.textContent = badgesText;
         return badgesEle;
 
@@ -176,10 +256,10 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 /*
 *Create tree template HTML which is maped like data--id => data
 *callback to map data in && append to index.html `Devices list` page
-
+ 
 *------
 *Treeview structure:
-
+ 
 *div0.TreeviewIPList
     *input1.caret.d-flex
         *div1.mx-1.caret_IP  (IP)

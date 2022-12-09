@@ -318,23 +318,5 @@ function operateTreedata(id, data, operation, callback) {
     }
 }
 
-function createTreeElement(group_map, callback) {
 
-
-    //    for(i of group_map.entries()){
-
-    //      div1.textContent = i[0];
-
-    //      const component_group = i[1].componentIDGroup;
-    //      const component_map = i[1].componentIDMap;
-    //      component_group.forEach(element => {
-    //        if (!componentIDGroupTreeview.has(element)) {
-    //          all_node.querySelector(".component_list").appendChild(document.createElement('li')).textContent = element; 
-    //          componentIDGroupTreeview.add(element);
-    //        }
-    //          });
-
-    //      }
-
-}
 

@@ -25,7 +25,7 @@ function parseServerEvent(IP, data, groupDataSet, groupDataMap, callback) {
     groupDataMap.set(cId, dataObj);
 
 
-    console.log("addrGroupMap", addrGroupMap);
+    //console.log("addrGroupMap", addrGroupMap);
     //callback();
 
 }

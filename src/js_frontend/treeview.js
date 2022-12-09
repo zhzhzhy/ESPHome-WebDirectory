@@ -120,10 +120,11 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             div0.classList.add("d-flex", "entityDataRegion");
             let div1Key = document.createElement("div");
             div1Key.classList.add("entityDataKey");
-            div1Key.textContent = entityKey + ":";
+            div1Key.setAttribute("entityDataKey", entityKey);
+            div1Key.textContent = entityKey + ": ";
             let div1Value = document.createElement("div");
             div1Value.textContent = entityValue;
-            div1Value.classList.add("entityValueKey");
+            div1Value.classList.add("entityDataValue");
             div0.append(div1Key, div1Value);
             iterator.appendChild(div0);
             //console.log("div0", div0);
@@ -150,12 +151,13 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             // }
             for (const node of treeviewEntityDataNodeList) {
                 let nodeKey = node.getElementsByClassName("entityDataKey")[0];
-                let nodeValue = node.getElementsByClassName("entityValueKey")[0];
-                if (!treeviewEntityDataMap.has(nodeKey.textContent)) {
-                    treeviewEntityDataMap.set(nodeKey.textContent, nodeValue.textContent);
+                let nodeValue = node.getElementsByClassName("entityDataValue")[0];
+                if (!treeviewEntityDataMap.has(nodeKey.getAttribute("entityDataKey"))) {
+                    treeviewEntityDataMap.set(nodeKey.getAttribute("entityDataKey"), nodeValue.textContent);
                 }
             }
 
+            console.log(treeviewEntityDataMap);
 
             for (const element of entityKeyValueMap) {
                 if (!treeviewEntityDataMap.has(element[0])) { //bug start here!
@@ -164,7 +166,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             }
             for (const node of treeviewEntityDataNodeList) {
                 let nodeKey = node.getElementsByClassName("entityDataKey");
-                let nodeValue = node.getElementsByClassName("entityValueKey");
+                let nodeValue = node.getElementsByClassName("entityDataValue");
                 if (entityKeyValueMap.has(nodeKey.textContent)) {
                     nodeValue.textContent = entityKeyValueMap.get(nodeKey.textContent);
                 }
@@ -186,7 +188,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             //         div1Key.textContent = entityKey + ":";
             //         let div1Value = document.createElement("div");
             //         div1Value.textContent = entityValue;
-            //         div1Value.classList.add("entityValueKey");
+            //         div1Value.classList.add("entityDataValue");
             //         div0.append(div1Key,div1Value);
             //         iterator.appendChild(div0);
             //         //console.log(entityValue);
@@ -197,7 +199,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 
     function getEntityClassBadge(badgesEle, entityClass) {
         let badgesText, bgColor;
-        console.log(entityClass);
+        //console.log(entityClass);
         switch (entityClass) {
             case "sensor":
                 badgesText = "Sensor";

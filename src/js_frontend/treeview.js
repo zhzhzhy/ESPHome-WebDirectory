@@ -130,11 +130,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 
             const originData = groupDataMap.get(iterator.getAttribute('entityName'));
             let treeviewEntityDataNodeList = iterator.getElementsByClassName("entityDataRegion");
-
             let treeviewEntityDataMap = new Map(); //Store treeview data map
-
-
-
             let entityKeyValueMap = new Map(); //Store origin data map
             for (const [entityKey, entityValue] of Object.entries(originData)) {
                 entityKeyValueMap.set(entityKey, entityValue);
@@ -148,7 +144,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 }
             }
 
-
             for (const element of entityKeyValueMap) {
                 if (!treeviewEntityDataMap.has(element[0])) {
                     createEntityDatadiv(iterator, element[0], element[1]);
@@ -160,8 +155,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 if (entityKeyValueMap.has(nodeKey.getAttribute("entityDataKey"))) {
                     nodeValue.textContent = entityKeyValueMap.get(nodeKey.getAttribute("entityDataKey"));
                 }
-
-
 
             }
 

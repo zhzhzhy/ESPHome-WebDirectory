@@ -24,7 +24,7 @@ ul {
 }
 
 .caret-down::before {
-  transform: rotate(90deg);
+  transform: rotate(45deg);
   transition-duration: 0.3s;
 }
 

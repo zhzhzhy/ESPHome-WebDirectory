@@ -117,14 +117,14 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
         let entityNameList = items.querySelectorAll("div[entityName]");
         function createEntityDatadiv(iterator, entityKey, entityValue) {
             let div0 = document.createElement("div");
-            div0.classList.add("d-flex", "entityDataRegion");
+            div0.classList.add("d-flex", "entityDataRegion","ms-4",);
             let div1Key = document.createElement("div");
-            div1Key.classList.add("entityDataKey");
+            div1Key.classList.add("entityDataKey","mx-2");
             div1Key.setAttribute("entityDataKey", entityKey);
-            div1Key.textContent = entityKey + ": ";
+            div1Key.textContent = entityKey + ":";
             let div1Value = document.createElement("div");
             div1Value.textContent = entityValue;
-            div1Value.classList.add("entityDataValue");
+            div1Value.classList.add("entityDataValue","mx-2");
             div0.append(div1Key, div1Value);
             iterator.appendChild(div0);
             //console.log("div0", div0);

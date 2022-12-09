@@ -165,10 +165,10 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 }
             }
             for (const node of treeviewEntityDataNodeList) {
-                let nodeKey = node.getElementsByClassName("entityDataKey");
-                let nodeValue = node.getElementsByClassName("entityDataValue");
-                if (entityKeyValueMap.has(nodeKey.textContent)) {
-                    nodeValue.textContent = entityKeyValueMap.get(nodeKey.textContent);
+                let nodeKey = node.getElementsByClassName("entityDataKey")[0];
+                let nodeValue = node.getElementsByClassName("entityDataValue")[0];
+                if (entityKeyValueMap.has(nodeKey.getAttribute("entityDataKey"))) {
+                    nodeValue.textContent = entityKeyValueMap.get(nodeKey.getAttribute("entityDataKey"));
                 }
 
 

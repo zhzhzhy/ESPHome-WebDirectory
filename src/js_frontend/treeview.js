@@ -105,8 +105,6 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                         componentListElement[0].append(divFlex, dataElement);
                     }
                 }
-
-
                 updateEntityData(items);
             }
         }
@@ -117,14 +115,14 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
         let entityNameList = items.querySelectorAll("div[entityName]");
         function createEntityDatadiv(iterator, entityKey, entityValue) {
             let div0 = document.createElement("div");
-            div0.classList.add("d-flex", "entityDataRegion","ms-4",);
+            div0.classList.add("d-flex", "entityDataRegion", "ms-4");
             let div1Key = document.createElement("div");
-            div1Key.classList.add("entityDataKey","mx-2");
+            div1Key.classList.add("entityDataKey", "mx-2");
             div1Key.setAttribute("entityDataKey", entityKey);
             div1Key.textContent = entityKey + ":";
             let div1Value = document.createElement("div");
             div1Value.textContent = entityValue;
-            div1Value.classList.add("entityDataValue","mx-2");
+            div1Value.classList.add("entityDataValue", "mx-2");
             div0.append(div1Key, div1Value);
             iterator.appendChild(div0);
         }
@@ -152,7 +150,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 
 
             for (const element of entityKeyValueMap) {
-                if (!treeviewEntityDataMap.has(element[0])) { 
+                if (!treeviewEntityDataMap.has(element[0])) {
                     createEntityDatadiv(iterator, element[0], element[1]);
                 }
             }

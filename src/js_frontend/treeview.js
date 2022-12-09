@@ -127,13 +127,11 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             div1Value.classList.add("entityDataValue","mx-2");
             div0.append(div1Key, div1Value);
             iterator.appendChild(div0);
-            //console.log("div0", div0);
         }
         for (const iterator of entityNameList) {
 
             const originData = groupDataMap.get(iterator.getAttribute('entityName'));
             let treeviewEntityDataNodeList = iterator.getElementsByClassName("entityDataRegion");
-            //console.log(treeviewEntityDataNodeList);
 
             let treeviewEntityDataMap = new Map(); //Store treeview data map
 
@@ -143,12 +141,7 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
             for (const [entityKey, entityValue] of Object.entries(originData)) {
                 entityKeyValueMap.set(entityKey, entityValue);
             }
-            // if (treeviewEntityDataNodeList.length == 0) {
-            //     const first = [...entityKeyValueMap][0];
-            //     const firstKey = first[0];
-            //     const firstValue = first[1];
-            //     createEntityDatadiv(iterator, firstKey, firstValue);
-            // }
+
             for (const node of treeviewEntityDataNodeList) {
                 let nodeKey = node.getElementsByClassName("entityDataKey")[0];
                 let nodeValue = node.getElementsByClassName("entityDataValue")[0];
@@ -157,10 +150,9 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
                 }
             }
 
-            console.log(treeviewEntityDataMap);
 
             for (const element of entityKeyValueMap) {
-                if (!treeviewEntityDataMap.has(element[0])) { //bug start here!
+                if (!treeviewEntityDataMap.has(element[0])) { 
                     createEntityDatadiv(iterator, element[0], element[1]);
                 }
             }
@@ -174,32 +166,12 @@ function updateTreeData(IP, groupDataSet, groupDataMap, callback) {
 
 
             }
-            //let dataJSON =  JSON.stringify(originData);
-            //     for (const [entityKey,entityValue] of Object.entries(originData)) {
 
-            //         if (treeviewEntityDataMap.has(entityKey)) {
-
-
-            //         }
-            //         let div0 = document.createElement("div");
-            //         div0.classList.add("d-flex","entityKeyValue");
-            //         let div1Key = document.createElement("div");
-            //         div1Key.classList.add("entityDataKey");
-            //         div1Key.textContent = entityKey + ":";
-            //         let div1Value = document.createElement("div");
-            //         div1Value.textContent = entityValue;
-            //         div1Value.classList.add("entityDataValue");
-            //         div0.append(div1Key,div1Value);
-            //         iterator.appendChild(div0);
-            //         //console.log(entityValue);
-            //     }
-            //     //iterator.textContent = dataJSON;
         }
     }
 
     function getEntityClassBadge(badgesEle, entityClass) {
         let badgesText, bgColor;
-        //console.log(entityClass);
         switch (entityClass) {
             case "sensor":
                 badgesText = "Sensor";

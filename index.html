@@ -52,7 +52,8 @@
           <div class="input-group mt-3">
             <input type="text" class="form-control" id="ipAddress" placeholder="ESPHome component IP address"
               aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
-            <button class="btn btn-outline-secondary btn-primary text-light" type="button" id="basic-Commit-IP">Commit</span>
+            <button class="btn btn-outline-secondary btn-primary text-light" type="button"
+              id="basic-Commit-IP">Commit</span>
           </div>
         </div>
       </div>
@@ -64,26 +65,27 @@
     <div class="container">
       <ul class="nav nav-tabs mb-3" role="tablist">
         <li class="nav-item" role="presentation" tabindex="0">
-          <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Devices_Card" type="button" role="tab"
-            aria-controls="Devices_Card" aria-selected="true">Devices Card</a>
+          <button class="nav-link" id="Devices_Card-tab" data-bs-toggle="tab" data-bs-target="#Devices_Card-pane"
+            type="button" role="tab" aria-controls="Devices_Card-pane" aria-selected="false">Devices Card</button>
         </li>
         <li class="nav-item" role="presentation" tabindex="0">
-          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Devices_List" type="button" role="tab"
-            aria-controls="Devices_List" aria-selected="false">Devices list</a>
+          <button class="nav-link" id="Devices_List-tab" data-bs-toggle="tab" data-bs-target="#Devices_List-pane"
+            type="button" role="tab" aria-controls="Devices_List-pane" aria-selected="true">Devices list</button>
         </li>
         <li class="nav-item" role="presentation" tabindex="0">
-          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Logcat" type="button" role="tab"
-            aria-controls="Logcat" aria-selected="false">Logcat</a>
+          <button class="nav-link" id="Logcat-tab" data-bs-toggle="tab" data-bs-target="#Logcat-pane" type="button"
+            role="tab" aria-controls="Logcat-pane" aria-selected="false">Logcat</button>
         </li>
+
         <li class="nav-item" role="presentation">
-          <a class="nav-link" data-toggle="tab">Settings</a>
+          <button class="nav-link" id="allSettings-tab" data-bs-toggle="tab" data-bs-target="#allSettings-pane" type="button" role="tab" aria-controls="allSettings-pane" aria-selected="false">Settings</button>
         </li>
       </ul>
 
 
       <div class="tab-content">
 
-        <div id="Devices_Card" class="tab-pane fade show active" role="tabpanel" aria-labelledby="Devices_Card"
+        <div id="Devices_Card-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_Card-tab"
           tabindex="-1">
           <div class="container col">
             <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list"></div>
@@ -98,42 +100,31 @@
 
         </div>
 
-        <div id="Devices_List" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List" tabindex="-1">
+        <div id="Devices_List-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List-tab"
+          tabindex="-1">
           <!-- Bootstrap Treeview for component card -->
           <ul id="treeview">
-            <!-- <li><span class="caret d-flex"><div class="mx-1 caret_IP">IP</div></span>
-          <ul class="nested component_list">
-            <!-- Append tree components here -->
-            <!-- </ul>
-        </li> -->
-          </ul>
 
-          <div id="Logcat" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat" tabindex="-1">
-            Text3
+          </ul>
+        </div>
+
+        <div id="Logcat-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat-tab" tabindex="-1">
+          <div class="container container-fluid bg-dark">
+            <p class="primary">logs here</p>
+          </div>
+        </div>
+
+        <div id="allSettings-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="allSettings-tab"
+          tabindex="-1">
+          <div class="container container-fluid bg-dark">
+            <p class="primary">Settings here</p>
           </div>
         </div>
       </div>
+    </div>
+
   </section>
 
-
-  <section>
-    <div class="container col">
-      <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list">
-
-      </div>
-      <div class="components_list list-group col-3 mt-3">
-        <h2>
-          <ul class="component row">
-          </ul>
-        </h2>
-      </div>
-
-
-    </div>
-    </div>
-
-    </div>
-  </section>
 
 
   <script src="src/js_frontend/treeview.js"></script>
@@ -164,13 +155,13 @@
         parseServerEvent(arg.id, arg.data, groupDataSet, groupDataMap);
         updateTreeData(IP, groupDataSet, groupDataMap);
 
-        
+
 
 
 
       });
 
-      
+
       // setInterval(() => {
       //   toggleTree();
       // }, 1000);

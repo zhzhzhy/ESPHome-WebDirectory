@@ -110,8 +110,8 @@
         </div>
 
         <div id="Logcat-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat-tab" tabindex="-1">
-          <div class="container container-fluid bg-dark">
-            <p class="primary">logs here</p>
+          <div class="container container-fluid bg-dark fixHeightScroll">
+            <p class="primary empty-text">logs here</p>
           </div>
         </div>
 
@@ -129,6 +129,7 @@
 
 
   <script src="src/js_frontend/treeview.js"></script>
+  <script src="src/js_frontend/logcat.js"></script>
   <script src="src/asset/socket.io/socket.io.min.js"></script>
   <script type="text/javascript" src="src/js_frontend/script.js"></script>
   <script src="src/js_frontend/main.js" type="text/javascript"></script>
@@ -155,12 +156,14 @@
         let groupDataMap = addrGroupMap.get(IP).componentIDMap; // reference addrGroupMap componentIDMap object
         parseServerEvent(arg.id, arg.data, groupDataSet, groupDataMap);
         updateTreeData(IP, groupDataSet, groupDataMap);
-
-
-
-
-
       });
+
+      //logs of components
+      socket.on("log", (arg) => {
+        //console.log("log: ", arg.data);
+        showAllLogs(arg);
+      }
+      )
 
 
       // setInterval(() => {

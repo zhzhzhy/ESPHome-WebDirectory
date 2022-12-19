@@ -22,8 +22,10 @@ import { maintainAddrGroup } from "./app.js";
   io.on('connection', (socket) => {
     socket.on("syncAddrGroup", (msg) => {
       maintainAddrGroup(msg, 'sync', (data) => {
-        for (let i of data)
+        for (let i of data) {
           EventHandler(i, "state", (a) => { socket.emit("state", { id: i, data: a }); });
+          EventHandler(i, "log", (a) => { socket.emit("log", { id: i, data: a }); });
+        }
       })
     })
     console.log('a user connected');

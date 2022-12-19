@@ -6,6 +6,6 @@ function showAllLogs(arg) {
     }
     let onelog = document.createElement("p");
     onelog.textContent = `ID: ${arg.id} DATA: ${arg.data}`
-    onelog.classList.add("primary");
+    onelog.classList.add("text-primary");
     logdiv.prepend(onelog);
 }

@@ -1,4 +1,3 @@
-const { data } = require("jquery");
 
 /*
 *Parse socket.io eventsource data to Set & Map for template usage

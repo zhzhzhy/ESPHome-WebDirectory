@@ -103,14 +103,49 @@
 
         <div id="Devices_List-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Devices_List-tab"
           tabindex="-1">
-          <!-- Bootstrap Treeview for component card -->
-          <ul id="treeview">
 
-          </ul>
+          <div class="container d-flex gap-2">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">Edit Mode</button>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Add to Devices Card</a></li>
+                <li><a class="dropdown-item" href="#">Expand All</a></li>
+                <li><a class="dropdown-item" href="#">Select All</a></li>
+                <li><a class="dropdown-item" href="#">Toggle Selected</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item bg-danger" href="#">Remove</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">Draw</button>
+            </div>
+          </div>
+
+          <!-- Bootstrap Treeview for component card -->
+          <div class="container">
+            <ul id="treeview" class="mt-3 d-flex gap-3">
+
+            </ul>
+          </div>
         </div>
 
         <div id="Logcat-pane" class="tab-pane fade" role="tabpanel" aria-labelledby="Logcat-tab" tabindex="-1">
-          <div class="container container-fluid bg-dark fixHeightScroll">
+          <div class="container">
+            <select class="form-select w-25" aria-label="Default select example">
+              <option selected>Select Component to Display</option>
+              <option value="1">All</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="container container-fluid bg-dark fixHeightScroll mt-3">
             <p class="primary empty-text">logs here</p>
           </div>
         </div>
@@ -197,7 +232,7 @@
 
   </script>
 
-  <script src="src/asset/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+  <script src="src/asset/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/template" data-template="template_card">
     <div class="card mt-3 p-3 rounded-5 component m-3" id="${id}" style="width: fit-content;">
       <div class="card-body justify-content-start">

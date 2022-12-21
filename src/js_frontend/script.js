@@ -109,14 +109,14 @@ function addComponentCard(data, selector) {
   }
 }
 
-/*
-*Remove card
-*/
-function removeComponent() {
-  $("div.component").on('click', "button.remove", function () {
-    console.log("Remove component: ", $(this).parents("div.component")); $(this).parents("div.component").remove();
-  })
-}
+// /*
+// *Remove card
+// */
+// function removeComponent() {
+//   $("div.component").on('click', "button.remove", function () {
+//     console.log("Remove component: ", $(this).parents("div.component")); $(this).parents("div.component").remove();
+//   })
+// }
 
 /* 
 *Maintain a group of added components IP address

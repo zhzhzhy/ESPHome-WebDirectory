@@ -26,23 +26,9 @@ const alertBS = (message, type, alertPlaceholder) => {
 
 }
 
-// /* 
-// *append template HTML in the text/template section of <script> tag
-// */
-// function appendTemplate(selector, items) {
-//   var itemTpl = $('script[data-template="template_card"]').text().split(/\$\{(.+?)\}/g);
-//   function render(props) {
-//     return function (tok, i) {
-//       return (i % 2) ? props[tok] : tok;
-//     };
-//   }
-//   let aped = items.map(function (item) {
-//     return itemTpl.map(render(item)).join('');
-//   });
-//   selector.prepend(aped);
-// }
 
-// handle IP input to addComponentCard
+
+// handle IP input 
 function handleInputIP(callback) {
   let inputIP;
   function handleEvent() {
@@ -64,59 +50,15 @@ function handleInputIP(callback) {
       handleEvent();
     }
   });
-  // $("#ipAddress").on('keyup', function (e) {
-  //   if (e.key === 'Enter' || e.keyCode === 13) {
-  //     handleEvent();
 
-  //   }
-  // });
 
 }
 
-// //Old addComponent function deprecated 
-// function addComponent(data, jqueryObject) {
-//   const ipRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
-//   if ((typeof data === 'string' || data instanceof String) && ipRegex.test(data)) {
-//     let dataAppend = jqueryObject.attr("id", data);
-//     document.getElementById("device_list").prepend(dataAppend);
-//     const id = data.replace(/\./g, "\\.");
-//     const selectorH5 = '#' + id + ' ' + 'h5.card-title';
-//     $(selectorH5).html(`${data}`);
-//   } else {
-//     alertBS(`IP address invalid: ${data}`, "danger",document.getElementById("IP_input_box"));
-//   }
-// }
 
-/*
-*Add Component_Card :
-*data as IP(text in the input box)
-*selector as where to prepend()
-*/
-function addComponentCard(data, selector) {
-  const ipRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
-  if ((typeof data === 'string' || data instanceof String) && ipRegex.test(data)) {
-    let ipAddrSelector = data.replace(/\./g, "_");
-    ipAddrSelector = "id_" + ipAddrSelector;
-    let ipAddr = data;
-    let items = [{
-      id: `${data}`,
-      ipAddr: `${ipAddr}`,
-      ipAddr_sel: `${ipAddrSelector}`
-    }];
-    appendTemplate(selector, items);
-  } else {
-    alertBS(`IP address invalid: ${data}`, "danger", document.getElementById("IP_input_box"));
-  }
-}
 
-// /*
-// *Remove card
-// */
-// function removeComponent() {
-//   $("div.component").on('click', "button.remove", function () {
-//     console.log("Remove component: ", $(this).parents("div.component")); $(this).parents("div.component").remove();
-//   })
-// }
+
+
+
 
 /* 
 *Maintain a group of added components IP address

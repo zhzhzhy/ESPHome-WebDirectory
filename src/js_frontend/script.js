@@ -9,7 +9,7 @@
 *Define a new alert using bootstrap alert class
 */
 const alertBS = (message, type, alertPlaceholder) => {
-  const wrapper = document.createElement('div')
+  const wrapper = document.createElement('div');
   wrapper.innerHTML = [
     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
     `   <div>${message}</div>`,
@@ -18,9 +18,12 @@ const alertBS = (message, type, alertPlaceholder) => {
   ].join('')
 
   alertPlaceholder.after(wrapper);
-  $(".alert").delay(4000).slideUp(200, function () {
-    $(this).alert('close');
-  });
+
+   setTimeout(() => {
+    const alert = bootstrap.Alert.getOrCreateInstance('.alert');
+    alert.close();
+  }, 4000);
+
 }
 
 /* 

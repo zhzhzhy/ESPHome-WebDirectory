@@ -89,10 +89,26 @@
           tabindex="-1">
           <div class="container col">
             <div class="row d-flex not justify-content-sm-start justify-content-center" id="device_list"></div>
+            <div class="card text-center w-50">
+              <div class="card-header">
+                Card Name
+              </div>
+              <div class="card-body">
+                <div class="card" style="width: 18rem;">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-footer text-muted d-flex justify-content-end">
+                <button type="button" class="btn btn-danger">Remove</button>
+              </div>
+            </div>
             <div class="components_list list-group col-3 mt-3">
-              <h2>
-                <ul class="component row"></ul>
-              </h2>
+
+
             </div>
 
 
@@ -211,14 +227,14 @@
 
   <script>
 
-      handleInputIP(
-        (data) => {
-          maintainAddrGroup(data, "add", () => {
-            socket.emit("syncAddrGroup", [...addrGroup.values()]);
-          }
-          )
+    handleInputIP(
+      (data) => {
+        maintainAddrGroup(data, "add", () => {
+          socket.emit("syncAddrGroup", [...addrGroup.values()]);
         }
-      );
+        )
+      }
+    );
 
 
 

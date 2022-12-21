@@ -54,12 +54,6 @@ function handleInputIP(callback) {
 
 }
 
-
-
-
-
-
-
 /* 
 *Maintain a group of added components IP address
 */

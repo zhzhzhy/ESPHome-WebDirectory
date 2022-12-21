@@ -216,7 +216,7 @@
       handleInputIP(
         (data) => {
           maintainAddrGroup(data, "add", () => {
-            addComponentCard(data, $("#device_list"));
+            // addComponentCard(data, $("#device_list"));
             socket.emit("syncAddrGroup", [...addrGroup.values()]);
           }
           )

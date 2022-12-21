@@ -39,24 +39,35 @@
       </div>
     </div>
   </nav>
+
   <section>
     <div class="container">
-      <h2>
-        <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
-      </h2>
-      <label for="ipAddress">Enter IP address for ESPHome component:</label>
-      <div class="input_box d-flex flex-column justify-content-start" style="width: fit-content;">
+      <div class="container justify-content-center row">
+        <div class="col-6">
+          <h2>
+            <a href="https://my.zerotier.com/" target="_blank">Zerotier Login</a>
+          </h2>
+          <label for="ipAddress">Enter IP address for ESPHome component:</label>
+          <div class="input_box d-flex flex-column justify-content-start" style="width: fit-content;">
 
-        <div class="d-flex gap-3 mb-3" id="IP_input_box">
-          <div class="input-group mt-3">
-            <input type="text" class="form-control" id="ipAddress" placeholder="ESPHome component IP address"
-              aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
-            <button class="btn btn-outline-secondary btn-primary text-light" type="button"
-              id="basic-Commit-IP">Commit</span>
+            <div class="d-flex gap-3 mb-3" id="IP_input_box">
+              <div class="input-group mt-3">
+                <input type="text" class="form-control" id="ipAddress" placeholder="ESPHome component IP address"
+                  aria-label="ESPHome component IP address" aria-describedby="basic-Input-IP">
+                <button class="btn btn-outline-secondary btn-primary text-light" type="button"
+                  id="basic-Commit-IP">Commit</span>
+              </div>
+            </div>
+
           </div>
+
+        </div>
+        <div class="justify-content-end col">
+          <div class="d-grid justify-content-end me-3 mt-3" id="alertRegion"></div>
         </div>
       </div>
 
+    </div>
   </section>
 
 

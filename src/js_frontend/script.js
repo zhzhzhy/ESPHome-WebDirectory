@@ -17,7 +17,7 @@ const alertBS = (message, type, alertPlaceholder) => {
     '</div>'
   ].join('')
 
-  alertPlaceholder.after(wrapper);
+  alertPlaceholder.prepend(wrapper);
 
   setTimeout(() => {
     const alert = bootstrap.Alert.getOrCreateInstance('.alert');
@@ -30,14 +30,21 @@ const alertBS = (message, type, alertPlaceholder) => {
 
 // handle IP input 
 function handleInputIP(callback) {
+  const ip_regex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+
   let inputIP;
   function handleEvent() {
     inputIP = document.getElementById('ipAddress');
-    if (!inputIP?.value) {
-      alertBS("Empty IP address!", "danger", document.getElementById("IP_input_box"));
+    const data = inputIP?.value;
+    if (!data) {
+      alertBS("Empty IP address!", "danger", document.getElementById("alertRegion"));
     } else {
-      console.log("IP addr & component added: ", inputIP.value);
-      callback(inputIP?.value);
+      if ((typeof data === 'string' || data instanceof String) && ip_regex.test(data)) {
+        console.log("IP addr & component added: ", inputIP.value);
+        callback(inputIP?.value);
+      } else {
+        alertBS(`IP address invalid: ${data}`, "danger", document.getElementById("alertRegion"));
+      }
     }
   }
 
@@ -65,7 +72,7 @@ function maintainAddrGroup(params, Operation, callback) {
         console.log("New components group set: ", [...addrGroup].map(data => `\[${data}\]`).join(","));
         callback();
       } else {
-        alertBS(`Duplicated IP address: ${params}`, "danger", document.getElementById("IP_input_box"));
+        alertBS(`Duplicated IP address: ${params}`, "danger", document.getElementById("alertRegion"));
       }
     }
     if (Operation === "delete" | Operation === "remove") {
